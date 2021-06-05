@@ -3,4 +3,4 @@
 /archivos
 /uploads
 .idea
-/config/config.php
+/config/database/config.php
