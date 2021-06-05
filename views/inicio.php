@@ -3,11 +3,8 @@ session_start();
 if (isset($_SESSION['session_datapagos'])) {
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
 <?php require_once 'layouts/header.php'?>
 
-<body>
     <div class="page-wrapper">
 
         <?php require_once 'layouts/menu_principal.php'?>
@@ -127,7 +124,6 @@ if (isset($_SESSION['session_datapagos'])) {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -145,11 +141,7 @@ if (isset($_SESSION['session_datapagos'])) {
     <?php require_once 'layouts/scripts.php'?>
     <!-- FUNCIONES JS-->
     <script src="../ajax/inicio.js"></script>
-</body>
-
-</html>
-<!-- end document-->
-<?php
+    <?php
 } else {
     header("location:../");
 }

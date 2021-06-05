@@ -25,14 +25,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
     <!-- Vendor CSS-->
-    <link href=".././public/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href=".././public/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
-        media="all">
-    <link href=".././public/vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href=".././public/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href=".././public/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href=".././public/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href=".././public/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Main CSS-->
     <link href=".././public/css/theme.css" rel="stylesheet" media="all">

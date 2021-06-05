@@ -2,12 +2,13 @@
 session_start();
 
 if(isset($_SESSION['session_datapagos'])){
-require_once '../models/ModelArchivo.php';
-$objArchivo = new Archivo();
-$id_usuario = $_SESSION['session_datapagos']['id'];
-$nombreUsuario = $_SESSION['session_datapagos']['nombre'];
+    
+    require_once '../models/ModelArchivo.php';
+    $objArchivo = new Archivo();
+    $id_usuario = $_SESSION['session_datapagos']['id'];
+    $nombreUsuario = $_SESSION['session_datapagos']['nombre'];
+    
     switch ($_REQUEST['opcion']) {
-
         case 'listarArchivos':
             $data = $objArchivo->listarArchivos($id_usuario);
             if ($data) {
@@ -18,7 +19,7 @@ $nombreUsuario = $_SESSION['session_datapagos']['nombre'];
                         "tipo" => '.' . $value['tipo'],
                         "url" => "<button type='button' class='btn  text-white btn-ver btn-sm' data-toggle='modal' data-target='#modalVizualizar' 
                                     onclick=cargarArchivo({$value['id']})><i class='fas fa-eye'></i>
-                                  </button>",
+                                </button>",
                         "fechaRegistro" => $value['fechaRegistro'],
                         "OP" => "<td>
                                     <a href='{$value['url']}' class='btn btn-sm text-white btn-download' download>
@@ -34,15 +35,15 @@ $nombreUsuario = $_SESSION['session_datapagos']['nombre'];
                     ];
                 }
             }
-    
+            
             $results = array(
                 "sEcho" => 1,
                 "iTotalRecords" => count($list),
                 "iTotalDisplayRecords" => count($list),
                 "aaData" => $list);
-            echo json_encode($results);
-            break;
-    
+                echo json_encode($results);
+        break;
+                
         case 'registrarArchivo':
             $id = $id_usuario;
             $categoriaArchivo = $_POST['categoriaArchivo'];
@@ -67,37 +68,37 @@ $nombreUsuario = $_SESSION['session_datapagos']['nombre'];
                         'idUsuario' => $id_usuario,
                     ];
                     print_r($datos);
-    
+                    
                     if (move_uploaded_file($archivoTemporal, $rutaFinal)) {
                         echo $objArchivo->registrarArchivo($datos);
                     }
                 }
             }
-            break;
-    
-        case 'listarCategoriaArchivo':
+        break;
+                    
+            case 'listarCategoriaArchivo':
             $data = $objArchivo->listarCategoriaArchivo();
             echo json_encode($data);
             break;
+
+case 'visualizarArchivo':
+    $data = $objArchivo->visualizarArchivo($_POST['id']);
+    if ($data['tipo'] == 'pdf') {
+        echo "<iframe src='{$data['url']}' width='100%' height='500px'></iframe>";
+    } else if ($data['tipo'] == 'jpg') {
+        echo "<img src='{$data['url']}' alt='{$data['nombre']}' width='auto' height='600'>";
+    } else if ($data['tipo'] == 'png') {
+        echo "<img src='{$data['url']}' alt='{$data['nombre']}' width='auto' height='600'>";
+    } else {
+        echo "<div class='alert alert-primary' role='alert'>El formato actual no esta soportado para visualizar!</div>";
+    }
+    break;
     
-        case 'visualizarArchivo':
-            $data = $objArchivo->visualizarArchivo($_POST['id']);
-            if ($data['tipo'] == 'pdf') {
-                echo "<iframe src='{$data['url']}' width='100%' height='500px'></iframe>";
-            } else if ($data['tipo'] == 'jpg') {
-                echo "<img src='{$data['url']}' alt='{$data['nombre']}' width='auto' height='600'>";
-            } else if ($data['tipo'] == 'png') {
-                echo "<img src='{$data['url']}' alt='{$data['nombre']}' width='auto' height='600'>";
-            } else {
-                echo "<div class='alert alert-primary' role='alert'>El formato actual no esta soportado para visualizar!</div>";
-            }
-            break;
-    
-        case 'listarUsuarios':
-            $data = $objArchivo->listarUsuarios($id_usuario);
-            echo json_encode($data);
-            break;
-    
+    case 'listarUsuarios':
+        $data = $objArchivo->listarUsuarios($id_usuario);
+        echo json_encode($data);
+        break;
+        
         case 'compartir':
             $idArchivo = $_POST['codigoArchivoCompartido'];
             $codigoUsuarioCompartido = $_POST['usuarioCompartir'];
@@ -109,47 +110,47 @@ $nombreUsuario = $_SESSION['session_datapagos']['nombre'];
             ];
             echo $objArchivo->compartir($datos);
             break;
-    
-        case 'archivosCompatidos':
-            $data = $objArchivo->archivosCompartidos($id_usuario);
-            if ($data) {
-                foreach ($data as $value) {
-                    $list[] = [
-                        "propietario" => $value['usuario'],
-                        "nombre" => $value['nombre'],
-                        "acciones" => "<button type='button' class='btn  text-white btn-ver btn-sm' onclick=verArchivoCompartido({$value['id']}) data-toggle='modal' data-target='#verArchivoCompartido'>
-                                    <i class='fas fa-eye'></i>
-                                  </button>
-                                  <button type='button' class='btn  text-white btn-download btn-sm' onclick=descargarArchivoCompartido({$value['id']})>
-                                  <i class='fas fa-download'></i>
-                                  </button>
-                                  <button type='button' class='btn  text-white btn-comment btn-sm'>
-                                  <i class='far fa-comments'></i>
-                                  </button>",
-                        "fechaCompartido" => $value['fechaRegistro']
-                    ];
+            
+            case 'archivosCompatidos':
+                $data = $objArchivo->archivosCompartidos($id_usuario);
+                if ($data) {
+                    foreach ($data as $value) {
+                        $list[] = [
+                            "propietario" => $value['usuario'],
+                            "nombre" => $value['nombre'],
+                            "acciones" => "<button type='button' class='btn  text-white btn-ver btn-sm' onclick=verArchivoCompartido({$value['id']}) data-toggle='modal' data-target='#verArchivoCompartido'>
+                            <i class='fas fa-eye'></i>
+                            </button>
+                            <button type='button' class='btn  text-white btn-download btn-sm' onclick=descargarArchivoCompartido({$value['id']})>
+                            <i class='fas fa-download'></i>
+                            </button>
+                            <button type='button' class='btn  text-white btn-comment btn-sm'>
+                            <i class='far fa-comments'></i>
+                            </button>",
+                            "fechaCompartido" => $value['fechaRegistro']
+                        ];
+                    }
                 }
-            }
-            echo json_encode($list);
-            break;
-        
-        case 'verArchivoCompartido';
-            $data = $objArchivo->verArchivoCompartido($_POST['id']);
-            if ($data['tipo'] == 'pdf') {
-                echo "<iframe src='{$data['url']}' width='100%' height='500px'></iframe>";
-            } else if ($data['tipo'] == 'jpg') {
-                echo "<img src='{$data['url']}' class='img-fluid'>";
-            } else if ($data['tipo'] == 'png') {
-                echo "<img src='{$data['url']}' class='img-fluid'>";
-            } else {
-                echo "<div class='alert alert-primary' role='alert'>El formato actual no esta soportado para visualizar!</div>";
-            }
-        break;
-
-        default:
-            header("HTTP/1.1 400 Bad Request :v");
-        break;
-    }
-}else{
-    header("HTTP/1.1 400 Bad Request :v");
-}
+                echo json_encode($list);
+                break;
+                
+                case 'verArchivoCompartido';
+                $data = $objArchivo->verArchivoCompartido($_POST['id']);
+                if ($data['tipo'] == 'pdf') {
+                    echo "<iframe src='{$data['url']}' width='100%' height='500px'></iframe>";
+                } else if ($data['tipo'] == 'jpg') {
+                    echo "<img src='{$data['url']}' class='img-fluid'>";
+                } else if ($data['tipo'] == 'png') {
+                    echo "<img src='{$data['url']}' class='img-fluid'>";
+                } else {
+                    echo "<div class='alert alert-primary' role='alert'>El formato actual no esta soportado para visualizar!</div>";
+                }
+                break;
+                                        
+                                        default:
+                                            header("HTTP/1.1 203 Bad Request");
+                                        break;
+                                    }
+                                }else{
+                                    header("HTTP/1.1 203 Bad Request");
+                                }

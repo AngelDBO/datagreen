@@ -19,7 +19,7 @@
 
 <!-- CHART JS       -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"
-    integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
+integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
 
 <!-- SWEET-ALERT 2 JS       -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -32,7 +32,6 @@
 
 <!-- MAIN JS-->
 <script src="../public/js/main.js"></script>
-
 </body>
 
 </html>

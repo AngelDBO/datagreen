@@ -6,6 +6,7 @@ listarCategoria();
 function init() {
     $("#alerta").hide();
 }
+
 function reset() {
     document.getElementById('files').value = '';
 }
@@ -13,7 +14,6 @@ function reset() {
 function file() {
     const fileName = document.getElementById('files').files[0].name;
     const extension = fileName.split('.').pop();
-    console.log(extension);
     const arrExtensiones = ['pdf', 'jpg', 'png', 'docx', 'txt', 'pptx', 'xlsx', 'xls'];
     if (arrExtensiones.includes(extension)) {
         document.getElementById("tempFile").innerHTML =
@@ -89,12 +89,8 @@ function listarArchivos() {
             { mData: 'OP' }
         ]
     });
-
-    /*document.oncontextmenu = function () {
-        return false;
-    };*/
+    
 }
-
 function cargarArchivo(id) {
     $.ajax({
         type: 'post',
@@ -171,8 +167,7 @@ function verArchivoCompartido(id) {
         data: 'id=' + id,
         success: (response) => {
             console.log(response);
-            document.getElementById("cargarArchivoCompartido").innerHTML = response;
-            
+            document.getElementById("cargarArchivoCompartido").innerHTML = response;      
         }
     });
 }
