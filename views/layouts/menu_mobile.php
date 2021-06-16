@@ -8,7 +8,7 @@
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
                 <li class="active has-sub">
-                    <a class="js-arrow" href="javascript:void(0)">
+                    <a class="js-arrow" href="inicio">
                         <i class="fa fa-home"></i>Inicio
                     </a>
                 </li>
@@ -21,17 +21,17 @@
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'terceros'">
+                            <a href="terceros">
                                 <i class="fa fa-address-card"></i>Registro Tercero</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'detalleTercero'">
+                            <a href="detalleTercero">
                                 <i class="fa fa-info"> </i> Detalle Tercero</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" onclick="location.href = 'pagos'">
+                    <a href="pagos">
                         <i class="fas fa-shopping-basket"></i>Pagos</a>
 
                 </li>
@@ -44,11 +44,11 @@
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'egresos'">
+                            <a href="egresos">
                                 <i class="fa fa-suitcase"></i>Egresos</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'ingresos'">Ingresos</a>
+                            <a href="ingresos">Ingresos</a>
                         </li>
                     </ul>
                 </li>

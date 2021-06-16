@@ -11,7 +11,7 @@ class Pago {
     }
 
     public function cargarTercero() {
-        $sql = 'SELECT id, empresa FROM empresa';
+        $sql = 'SELECT id, empresa FROM empresa WHERE estado = "Activo"';
         $base = $this->conexion->query($sql);
         $base->execute();
         return $base->fetchAll(PDO::FETCH_ASSOC);
@@ -62,36 +62,14 @@ class Pago {
         }
     }
 
-    public function actualizarPagoComprobante($datos) {
-        //echo "Con comprobante";
-        print_r($datos);
-        //die();
-        $sql = 'UPDATE pago SET mesPago = :mesPago, monto= :monto, comprobante = :comprobante,
-                empresa_id = :empresa_id, usuario_id = :usuario_id, fechaPago = :fechaPago,
-                medioPago_id = :medioPago_id, descripcion = :descripcion WHERE id = :ID';
+    public function actualizarPago($datos) {
+        $sql = 'UPDATE pago SET mesPago = :mesPago, monto= :monto, comprobante = :comprobante, empresa_id = :empresa_id, 
+                                usuario_id = :usuario_id, fechaPago = :fechaPago, medioPago_id = :medioPago_id, descripcion = :descripcion 
+                                WHERE id = :ID';
         $base = $this->conexion->prepare($sql);
         $base->bindParam(":mesPago", $datos['mesPago']);
         $base->bindParam(":monto", $datos['monto']);
         $base->bindParam(":comprobante", $datos['comprobante']);
-        $base->bindParam(":empresa_id", $datos['tercero']);
-        $base->bindParam(":usuario_id", $datos['idUsuario']);
-        $base->bindParam(":fechaPago", $datos['fechaPago']);
-        $base->bindParam(":medioPago_id", $datos['medioPago']);
-        $base->bindParam(":descripcion", $datos['descripcion']);
-        $base->bindParam(":ID", $datos['idRegistro']);
-        if ($base->execute()) {
-            return "Pago y Archivo actualizado con exito";
-        } else {
-            return "Error al guardar pago";
-        }
-    }
-
-    public function actualizarPago($datos) {
-        $sql = 'UPDATE pago SET mesPago = :mesPago, monto= :monto, empresa_id = :empresa_id, usuario_id = :usuario_id,
-            fechaPago = :fechaPago, medioPago_id = :medioPago_id, descripcion = :descripcion WHERE id = :ID';
-        $base = $this->conexion->prepare($sql);
-        $base->bindParam(":mesPago", $datos['mesPago']);
-        $base->bindParam(":monto", $datos['monto']);
         $base->bindParam(":empresa_id", $datos['tercero']);
         $base->bindParam(":usuario_id", $datos['idUsuario']);
         $base->bindParam(":fechaPago", $datos['fechaPago']);
@@ -106,7 +84,7 @@ class Pago {
     }
 
     public function obtenerImagen($id) {
-        $sql = 'SELECT comprobante FROM pago WHERE id = :ID';
+        $sql = 'SELECT monto, comprobante FROM pago WHERE id = :ID';
         $base = $this->conexion->prepare($sql);
         $base->bindParam("ID", $id, PDO::PARAM_INT);
         if ($base->execute()) {

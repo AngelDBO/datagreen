@@ -10,12 +10,12 @@
             </div>
             <div class="modal-body">
                 <form id="frmPagoUpdate" onsubmit="return ActualizarPago()" method="post" enctype="multipart/form-data">
-                    <input type="hidden" id="nombreTerceroU" name="NombreTerceroU" readonly>
+                    <input type="hidden" id="nombreTerceroU" name="NombreTerceroU">
                     <input type="hidden" id="TerceroUpdate" name="idRegistro" readonly>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tercero">Tercero</label>
-                            <select class="form-control form-control-sm" name="terceroU" id="terceroU">
+                            <select class="form-control form-control-sm" name="terceroU" id="terceroU" onchange="obtenerNombreTerceroU()">
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -54,8 +54,9 @@
                         <div class="form-group col-md-6">
                             <label for="comprobante">Comprobante</label>
                             <input accept="image/*" type="file" class="form-control form-control-sm" id="comprobante"
-                                name="comprobanteU">
-                            <input type="hidden" id="comprobanteU" name="comprobanteU" readonly>
+                                name="comprobanteNew">
+                            <input type="hidden" id="comprobanteU" name="comprobanteOld" readonly>
+                            <small><i class="fas fa-paperclip"></i> <span id="ticket"></span> </small>
                         </div>
                     </div>
                     <div class="form-row">

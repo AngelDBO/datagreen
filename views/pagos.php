@@ -40,7 +40,7 @@ if (isset($_SESSION['session_datapagos'])) {
                                     </ul>
                                 </div>
                                 <button class="btn text-white btn-modal" data-toggle="modal"
-                                    data-target="#modalRegistrar">
+                                    data-target="#modalRegistrar" onclick="listarSerivicios()">
                                     <i class="fas fa-plus-circle"></i> Nuevo
                                 </button>
                             </div>

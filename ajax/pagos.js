@@ -1,27 +1,38 @@
 listarPagos();
-cargarTercero();
-cargarMedioPago();
 
-$("#tercero").change(function () {
-    $('#nombreTercero').val($("#tercero option:selected").text());
-});
-$("#terceroU").change(function () {
-    $('#nombreTerceroU').val($("#terceroU option:selected").text());
-});
+function listarSerivicios(){
+    cargarTercero();
+    cargarMedioPago();
+}
 
-$("input[type='file']").on("change", function () {
-    if (this.files[0].size > 2097152) {
+function obtenerNombreTercero() {
+    const select = document.getElementById("tercero");
+    const nombreTercero = select.options[select.selectedIndex].text;
+    document.getElementById("nombreTercero").value = nombreTercero;
+}
+
+function obtenerNombreTerceroU() {
+    const selectU = document.getElementById("terceroU");
+    const nombreTerceroU = selectU.options[selectU.selectedIndex].text;
+    document.getElementById("nombreTerceroU").value = nombreTerceroU;
+}
+
+function obtenerPeso() {
+    const archivo = document.getElementById('comprobante').files[0];
+    const pesoAdmitido = 2097152;
+    if (archivo.size > pesoAdmitido){
         Swal.fire({
             showCancelButton: false,
             allowOutsideClick: false,
             icon: 'warning',
             text: "El archivo supera el tamaño permitido!"
-        });
-        $(this).val('');
-    } else {
-        validar($('#comprobante').val());
+        }); 
+        document.getElementById('comprobante').value = "";
+    }else{
+        validarExtension(archivo.type);
     }
-});
+}
+
 
 function listarPagos() {
     var table = $('#tablaPagos').dataTable({
@@ -47,22 +58,23 @@ function listarPagos() {
             {mData: 'nombre'},
             {mData: 'fechaRegistro'},
             {mData: 'OP'}
-        ]
+        ],
+        "order": [[ 5, "desc" ]]
     });
 }
 
-function validar(archivo) {
-    var aux = archivo.split('.');
-    if (aux[aux.length - 1] === 'jpg' || aux[aux.length - 1] === 'png' || aux[aux.length - 1] === 'pdf') {
+function validarExtension(archivo) {
+    var aux = archivo.split('/');
+    if (aux[aux.length - 1] === 'jpg' || aux[aux.length - 1] === 'png' || aux[aux.length - 1] === 'pdf' || aux[aux.length - 1] === 'jpeg') {
         return true;
     } else {
         Swal.fire({
             showCancelButton: false,
             allowOutsideClick: false,
             icon: 'warning',
-            text: "Archivo no permitido!"
+            text: "Archivo no permitido"
         });
-        $('#comprobante').val('');
+        document.getElementById('comprobante').value = "";
         return false;
     }
 }
@@ -106,8 +118,7 @@ function cargarMedioPago() {
 }
 
 function registrarPago() {
-//console.log($('#nombreTercero').val());
-    let formdata = new FormData(document.getElementById('frmPago'));
+    const formdata = new FormData(document.getElementById('frmPago'));
     $.ajax({
         url: './../controllers/PagoController.php?opcion=registrarPago',
         type: 'post',
@@ -125,47 +136,57 @@ function registrarPago() {
         success: function (response) {
             $('#tablaPagos').DataTable().ajax.reload(null, false);//Refrescar datatable luego de guardar
             
-            Swal.fire({
-                showCancelButton: false,
-                allowOutsideClick: false,
-                icon: 'success',
-                text: response
-            });
-            $('#frmPago')[0].reset();
-            $('#modalRegistrar').modal('hide');
+            console.log(response);
+            //$('#frmPago')[0].reset();
+            //$('#modalRegistrar').modal('hide');
         }
     });
     return false;
 }
 
 function convertDate(date) {
-    var d = date;
-    d = d.split(' ')[0];
+    const d = date.split(' ')[0];
     return d;
 }
 
 function editarPago(id) {
-    $.ajax({
-        type: 'post',
-        url: './../controllers/PagoController.php?opcion=editarPago',
-        data: 'id=' + id,
-        success: function (response) {
-            var data = JSON.parse(response);
-            console.log(data);
-            $('#TerceroUpdate').val(data.id);
-            $('#nombreTerceroUpdate').val(data.id);
-            $('#terceroU').val(data.empresa_id);
-            $('#nombreTerceroU').val($("#terceroU option:selected").text());
-            $('#mesU').val(data.mesPago);
-            $('#montoU').val(data.monto);
-            $('#medioPagoU').val(data.medioPago_id);
-            $('#fechaPagoU').val(convertDate(data.fechaPago));
-            $('#comprobanteU').val(data.comprobante);
-            $('#descripcionU').val(data.descripcion);
-        }
-    });
+    listarSerivicios();
+    setTimeout(() => {
+        $.ajax({
+            type: 'post',
+            url: './../controllers/PagoController.php?opcion=editarPago',
+            data: 'id=' + id,
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#TerceroUpdate').val(data.id);
+                $('#nombreTerceroUpdate').val(data.id);
+                $('#terceroU').val(data.empresa_id);
+                $('#nombreTerceroU').val($("#terceroU option:selected").text());
+                $('#mesU').val(data.mesPago);
+                $('#montoU').val(data.monto);
+                $('#medioPagoU').val(data.medioPago_id);
+                $('#fechaPagoU').val(convertDate(data.fechaPago));
+                $('#comprobanteU').val(data.comprobante);
+                $('#descripcionU').val(data.descripcion);
+                $('#ticket').html(mostrarComprobrante(data.comprobante));
+            }
+        });
+    },100);
+    
     return false;
 }
+
+function mostrarComprobrante(data){
+    if (data == null) {
+        return "sin archivo";
+    }else{
+        var ext = data.split(' ');
+        var d = ext[0].split('/');
+        return d[3];
+    }
+    
+}
+
 function ActualizarPago() {
     let formdata = new FormData(document.getElementById('frmPagoUpdate'));
     $.ajax({
@@ -193,7 +214,8 @@ function cargarArchivo(id) {
         data: 'id=' + id,
         success: function (response) {
             var data = JSON.parse(response);
-            $('#imagenData').empty().append('<img src="' + data.comprobante + '" width="auto">');
+            $('#imagenData').empty().append('<img class="img-fluid" src="' + data.comprobante + '">');
+            document.getElementById("valorPago").innerHTML = `Comprobante de pago por valor de: $${data.monto} pesos`;
         }
     });
 }

@@ -10,16 +10,16 @@
             </div>
             <div class="modal-body">
                 <form id="frmPago" onsubmit="return registrarPago()" method="post" enctype="multipart/form-data">
-                    <input type="hidden" class="form-control" id="nombreTercero" name="NombreTercero" readonly>
+                    <input type="hidden" id="nombreTercero" name="NombreTercero" readonly>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tercero">Tercero</label>
-                            <select class="form-control form-control-sm" name="tercero" id="tercero">
+                            <select class="form-control form-control-sm" name="tercero" id="tercero" onchange="obtenerNombreTercero()" required>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="mes">Mes de pago</label>
-                            <select class="form-control form-control-sm" name="mes" id="mes">
+                            <select class="form-control form-control-sm" name="mes" id="mes" required>
                                 <option value="" disabled selected>Seleccione mes</option>
                                 <option value="Enero">Enero</option>
                                 <option value="Febrero">Febrero</option>
@@ -39,22 +39,23 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="monto">Monto</label>
-                            <input type="text" class="form-control form-control-sm" id="monto" name="monto">
+                            <input type="text" class="form-control form-control-sm" id="monto" name="monto" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="medioPago">Medio de pago</label>
-                            <select class="form-control form-control-sm" id="medioPago" name="medioPago"></select>
+                            <select class="form-control form-control-sm" id="medioPago" name="medioPago" required></select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="fechaPago">Fecha de pago</label>
-                            <input type="date" class="form-control form-control-sm" id="fechaPago" name="fechaPago">
+                            <input type="date" class="form-control form-control-sm" id="fechaPago" name="fechaPago" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="comprobante">Comprobante</label>
                             <input accept="image/*" type="file" class="form-control form-control-sm" id="comprobante"
-                                name="comprobante">
+                                name="comprobante" onchange="obtenerPeso()">
+                                <small class="text-muted">*admitidos:  jpg, jpeg, png, pdf.</small>
                         </div>
                     </div>
                     <div class="form-row">

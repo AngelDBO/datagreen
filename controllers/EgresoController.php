@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$id_usuario = $_SESSION['session_datapagos']['id'];
 require_once '../models/ModelEgreso.php';
 require_once '../config/helpers/validate.php';
 $objEgreso = new Egreso();
@@ -12,12 +13,14 @@ switch ($_REQUEST['opcion']) {
                 $list[] = [
                     "tercero" => strtoupper($value['empresa']),
                     "monto" => "$".$value['monto'],
+                    "categoria" => $value['categoria'],
                     "nombre" => $value['nombre'],
                     "descripcion" => strtoupper($value['descripcion']),
                     "fechaRegistro" => $value['fechaRegistro'],
                     "acciones" => "<td>
                                         <button type='button' class='btn text-white btn-printer btn-sm'><i class='fas fa-print'></i></button>
                                         <button type='button' class='btn text-white btn-edit btn-sm' data-toggle='modal' data-target='#editarEgreso' onclick=editarEgreso({$value['id']})><i class='fas fa-edit'></i></button>
+                                        <button type='button' class='btn text-white btn-delete btn-sm' onclick=eliminarEgreso({$value['id']})><i class='fas fa-trash-alt'></i></button>
                                    </td>"
                 ];
             }
@@ -41,13 +44,19 @@ switch ($_REQUEST['opcion']) {
         $data = $objEgreso->cargarMedioPago();
         echo json_encode($data);
         break;
+    
+    case 'listarCategoria':
+        $data = $objEgreso->cargarCategoria();
+        echo json_encode($data);
+        break;
+    break;
 
     case 'registroEgreso':
         $errores = [];
-        $usuarioID = isset($_POST['IDusuario']) ? $_POST['IDusuario'] : null;
         $terceroID = isset($_POST['terceroEgreso']) ? $_POST['terceroEgreso'] : null;
         $monto = isset($_POST['monto']) ? $_POST['monto'] : null;
         $medioPago = isset($_POST['medioPagoEgreso']) ? $_POST['medioPagoEgreso'] : null;
+        $categoria = isset($_POST['categoria_egreso']) ? $_POST['categoria_egreso'] : null;
         $descripcion = isset($_POST['descripcionIngreso']) ? rip_tags($_POST['descripcionIngreso']) : null;
 
         if (!validarEntero($terceroID) && !is_numeric($terceroID)) {
@@ -59,6 +68,9 @@ switch ($_REQUEST['opcion']) {
         if (!validarEntero($medioPago) && !is_numeric($medioPago)) {
             $errores[] = 'El campo <strong>Medio de pago</strong> es incorrecto.';
         }
+        if (!validarEntero($categoria) && !is_numeric($categoria)) {
+            $errores[] = 'El campo <strong>Categoria</strong> es incorrecto.';
+        }
         if (!validaRequerido($descripcion)) {
             $errores[] = 'Campo <strong>Descripcion</strong> obligatorio';
         }
@@ -66,19 +78,20 @@ switch ($_REQUEST['opcion']) {
         if (count($errores) > 0) {
             foreach ($errores as $value) {
                 echo "<div class='alert alert-danger alert-dismissible fade show ' width:40% role='alert'>
-            <strong>Error:</strong> {$value}.
-            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-            </button>
-            </div>";
+                        <strong>Error:</strong> {$value}.
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
             }
         } else {
             $datos = [
                 'monto' => $monto,
                 'descripcion' => $descripcion,
                 'terceroiId' => $terceroID,
-                'usuarioId' => $usuarioID,
-                'medioPagoId' => $medioPago
+                'usuarioId' => $id_usuario,
+                'medioPagoId' => $medioPago,
+                'categoriaId' => $categoria
             ];
             if ($objEgreso->registrarEgreso($datos)) {
                 echo "1";
@@ -134,5 +147,8 @@ switch ($_REQUEST['opcion']) {
                 echo "1";
             }
         }
+        break;
+    case 'eliminarEgreso':
+        echo $objEgreso->eliminarEgreso($_POST['id']);
         break;
 }

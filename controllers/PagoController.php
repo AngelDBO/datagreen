@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$id_usuario = $_SESSION['session_datapagos']['id'];
 date_default_timezone_set('America/Bogota');
 require_once '../config/helpers/extension.php';
 require_once '../models/ModelPagos.php';
@@ -18,11 +19,26 @@ switch ($_REQUEST['opcion']) {
                     "fechaPago" => $value['fechaPago'],
                     "nombre" => $value['nombre'],
                     "fechaRegistro" => $value['fechaRegistro'],
-                    "OP" => "<td>
-                                <button type='button' class='btn text-white  btn-ver btn-sm' data-toggle='modal' data-target='#modalImagen' onclick=cargarArchivo({$value['id']}) data-toggle='tooltip' data-placement='top' title='Ver comprobante'><i class='fas fa-images'></i></button>
-                                <a href='{$value['comprobante']}' class='btn text-white btn-download btn-sm' download data-toggle='tooltip' data-placement='top' title='Descargar comprobante'><i class='fas fa-cloud-download-alt'></i><a/>
-                                <button type='button' class='btn text-white btn-edit btn-sm ml-1' data-toggle='modal' data-target='#modalEditar' onclick=editarPago({$value['id']}) data-toggle='tooltip' data-placement='top' title='Editar comprobante'><i class='fas fa-edit'></i></button>
-                            </td>"
+                    "OP" => (!empty($value["comprobante"])? 
+                            "<td>
+                                <button type='button' class='btn text-white  btn-share btn-sm' data-toggle='modal' data-target='#modalImagen' onclick=cargarArchivo({$value['id']})>
+                                    <i class='fas fa-print'></i>
+                                </button>
+                                <button type='button' class='btn text-white  btn-ver btn-sm' data-toggle='modal' data-target='#modalImagen' onclick=cargarArchivo({$value['id']})>
+                                    <i class='fas fa-eye'></i>
+                                </button>
+                                <a href='{$value['comprobante']}' class='btn text-white btn-download btn-sm' download>
+                                    <i class='fas fa-cloud-download-alt'></i>
+                                <a/>
+                                <button type='button' class='btn text-white btn-edit btn-sm ml-1' data-toggle='modal' data-target='#modalEditar' onclick='editarPago({$value['id']});'>
+                                    <i class='fas fa-edit'></i>
+                                </button>
+                            </td>":
+                            "<td> 
+                                <button type='button' class='btn text-white btn-edit btn-sm' data-toggle='modal' data-target='#modalEditar' onclick='editarPago({$value['id']});'>
+                                    <i class='fas fa-edit'></i>
+                                </button>
+                            </td>")
                 ];
             }
         }
@@ -49,7 +65,6 @@ switch ($_REQUEST['opcion']) {
             $extension = pathinfo($archivo, PATHINFO_EXTENSION);
             if (in_array($extension, $formatos_permitidos)) {
                 $nombreArchivo = uniqid() . '.' . $extension;
-                //$nombreArchivo = basename($_FILES['comprobante']['name']);
                 $carpetaTercero = '../archivos/' . str_replace(' ', '_', $nombreTercero);
                 if (!file_exists($carpetaTercero)) {
                     mkdir($carpetaTercero, 0777, true);
@@ -70,6 +85,17 @@ switch ($_REQUEST['opcion']) {
                     echo $objPago->registrarPago($datos);
                 }
             }
+        }else{
+            $datos = [
+                'mesPago' => $mes,
+                'monto' => $monto,
+                'tercero' => $id,
+                'idUsuario' => '1',
+                'fechaPago' => $fechaPago,
+                'medioPago' => $medioPago,
+                'descripcion' => $descripcion
+            ];
+            echo $objPago->registrarPago($datos);
         }
 
         break;
@@ -114,58 +140,99 @@ switch ($_REQUEST['opcion']) {
         $monto = $_POST['montoU'];
         $medioPago = $_POST['medioPagoU'];
         $fechaPago = $_POST['fechaPagoU'];
-        $comprobante = $_POST['comprobanteU'];
+        $comprobanteOld = $_POST['comprobanteOld'];
         $descripcion = $_POST['descripcionU'];
-        $formatos_permitidos = ['jpg', 'png', 'pdf'];
-        if ($_FILES['comprobanteU']['size'] > 0 && $_FILES['comprobanteU']['error'] === UPLOAD_ERR_OK) {
-            $archivoActual = $_POST['comprobanteU'];
-            if (file_exists($archivoActual)) {
-                if (unlink($archivoActual)) {
-                    $archivo = $_FILES['comprobanteU']['name'];
+        $formatos_permitidos = ['jpg', 'png', 'pdf', 'jpeg'];
+        if ($_FILES['comprobanteNew']['size'] > 0 && $_FILES['comprobanteNew']['error'] === UPLOAD_ERR_OK && !empty($comprobanteOld)) {
+            if (file_exists($comprobanteOld)) {
+                if (unlink($comprobanteOld)) {
+                    $archivo = $_FILES['comprobanteNew']['name'];
                     $extension = pathinfo($archivo, PATHINFO_EXTENSION);
                     if (in_array($extension, $formatos_permitidos)) {
-                        $nombreArchivo = basename($_FILES['comprobanteU']['name']);
+                        $nombreArchivo = uniqid() . '.' . $extension;
                         $carpetaTercero = '../archivos/' . str_replace(' ', '_', $nombreTercero);
                         if (!file_exists($carpetaTercero)) {
                             mkdir($carpetaTercero, 0777, true);
                         }
-                        $archivoTemporal = $_FILES['comprobanteU']['tmp_name'];
+                        $archivoTemporal = $_FILES['comprobanteNew']['tmp_name'];
                         $rutaFinal = $carpetaTercero . "/" . $nombreArchivo;
                         $datos = [
+                            'idRegistro' => $id,
                             'mesPago' => $mes,
                             'monto' => $monto,
                             'comprobante' => $rutaFinal,
-                            'idRegistro' => $id,
                             'tercero' => $idTercero,
-                            'idUsuario' => '1',
+                            'idUsuario' => $id_usuario,
                             'fechaPago' => $fechaPago,
                             'medioPago' => $medioPago,
                             'descripcion' => $descripcion
                         ];
 
                         if (move_uploaded_file($archivoTemporal, $rutaFinal)) {
-                            echo $objPago->actualizarPagoComprobante($datos);
+                            echo $objPago->actualizarPago($datos);
                         }
                     }
                 }
-            } else {
-                echo "el archivo no existe";
-            }
-        } else {
-            $datos1 = [
-                'idRegistro' => $id,
-                'mesPago' => $mes,
-                'monto' => $monto,
-                'tercero' => $idTercero,
-                'idUsuario' => '1',
-                'fechaPago' => $fechaPago,
-                'medioPago' => $medioPago,
-                'descripcion' => $descripcion
-            ];
+            }  
+        }else if($_FILES['comprobanteNew']['size'] > 0 && $_FILES['comprobanteNew']['error'] === UPLOAD_ERR_OK && empty($comprobanteOld)){
+                    $archivo = $_FILES['comprobanteNew']['name'];
+                    $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+                    if (in_array($extension, $formatos_permitidos)) {
+                        $nombreArchivo = uniqid() . '.' . $extension;
+                        $carpetaTercero = '../archivos/' . str_replace(' ', '_', $nombreTercero);
+                        if (!file_exists($carpetaTercero)) {
+                            mkdir($carpetaTercero, 0777, true);
+                        }
+                        $archivoTemporal = $_FILES['comprobanteNew']['tmp_name'];
+                        $rutaFinal = $carpetaTercero . "/" . $nombreArchivo;
+                        $datos = [
+                            'idRegistro' => $id,
+                            'mesPago' => $mes,
+                            'monto' => $monto,
+                            'comprobante' => $rutaFinal,
+                            'tercero' => $idTercero,
+                            'idUsuario' => $id_usuario,
+                            'fechaPago' => $fechaPago,
+                            'medioPago' => $medioPago,
+                            'descripcion' => $descripcion
+                        ];
 
-            echo $objPago->actualizarPago($datos1);
-        }
-        break;
+                        if (move_uploaded_file($archivoTemporal, $rutaFinal)) {
+                            echo $objPago->actualizarPago($datos);
+                        }
+                    }
+        }else if($_FILES['comprobanteNew']['error'] === UPLOAD_ERR_NO_FILE && !empty($comprobanteOld)){
+            if (file_exists($comprobanteOld)) {
+                if (unlink($comprobanteOld)) {
+                    $datos = [
+                        'idRegistro' => $id,
+                        'mesPago' => $mes,
+                        'monto' => $monto,
+                        'comprobante' => NULL,
+                        'tercero' => $idTercero,
+                        'idUsuario' => $id_usuario,
+                        'fechaPago' => $fechaPago,
+                        'medioPago' => $medioPago,
+                        'descripcion' => $descripcion
+                    ];
+                    echo $objPago->actualizarPago($datos);
+                }
+            }
+        }else if($_FILES['comprobanteNew']['error'] === UPLOAD_ERR_NO_FILE && empty($comprobanteOld)){
+                $datos = [
+                    'idRegistro' => $id,
+                    'mesPago' => $mes,
+                    'monto' => $monto,
+                    'comprobante' => NULL,
+                    'tercero' => $idTercero,
+                    'idUsuario' => $id_usuario,
+                    'fechaPago' => $fechaPago,
+                    'medioPago' => $medioPago,
+                    'descripcion' => $descripcion
+                ];
+                echo $objPago->actualizarPago($datos);
+        }  
+    break;
 
     case 'obtenerArchivo':
         $data = $objPago->obtenerImagen($_POST['id']);

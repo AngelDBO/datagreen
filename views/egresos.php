@@ -36,7 +36,7 @@ if (isset($_SESSION['session_datapagos'])) {
                                     </ul>
                                 </div>
                                 <button class="btn text-white btn-modal" data-toggle="modal"
-                                    data-target="#registroEgreso">
+                                    data-target="#registroEgreso" onclick="listarServicios()">
                                     <i class="fas fa-plus-circle"></i> Nuevo</span>
                                 </button>
                             </div>
@@ -63,9 +63,10 @@ if (isset($_SESSION['session_datapagos'])) {
                                                 <th>Tercero</th>
                                                 <th>Monto</th>
                                                 <th>Medio de pago</th>
-                                                <th>Nota</th>
+                                                <th>Categoria</th>
                                                 <th>Acciones</th>
                                                 <th>Fecha registro</th>
+                                                <th>Nota</th>
                                             </tr>
                                         </thead>
                                     </table>

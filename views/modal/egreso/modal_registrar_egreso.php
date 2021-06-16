@@ -10,26 +10,39 @@
             </div>
             <div class="modal-body">
                 <form id="frmIngreso" onsubmit="return registrarEgreso()" method="post" autocomplete="off">
-                    <input type="hidden" name="IDusuario" value="1">
                     <div class="form-group">
                         <label for="tercero" class="text-body col-form-label-sm">Tercero</label>
                         <select class="form-control form-control-sm" name="terceroEgreso" id="terceroEgreso" required>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="monto" class="text-body col-form-label-sm">Monto</label>
-                        <input type="text" name="monto" class="form-control form-control-sm" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="medioPago" class="text-body col-form-label-sm">Medio de pago</label>
-                        <select class="form-control form-control-sm" name="medioPagoEgreso" id="medioPagoEgreso"
-                            required>
+                        <label for="categoria_egreso" class="text-body col-form-label-sm">Categoria</label>
+                        <select class="form-control form-control-sm" name="categoria_egreso" id="categoria_egreso" required>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="descripcionIngreso" class="text-body col-form-label-sm">Descripción del
-                            ingreso</label>
-                        <textarea class="form-control form-control-sm" rows="3" name="descripcionIngreso"></textarea>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="monto" class="text-body col-form-label-sm">Monto</label>
+                            <input type="text" name="monto" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="medioPago" class="text-body col-form-label-sm">Medio de pago</label>
+                            <select class="form-control form-control-sm" name="medioPagoEgreso" id="medioPagoEgreso"
+                                required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="descripcionIngreso" class="text-body col-form-label-sm">Descripción del
+                                ingreso</label>
+                            <textarea class="form-control form-control-sm" rows="3"
+                                name="descripcionIngreso"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="medioPago" class="text-body col-form-label-sm">Anexo</label>
+                            <input type="file" class="form-control" name="anexoEgreso" captureh>
+                        </div>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-sm  text-white">

@@ -103,7 +103,7 @@ p {
 /* ----- Typography ----- */
 body {
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     line-height: 1.625;
     color: #666;
@@ -14704,18 +14704,6 @@ section {
     padding-left: 30px;
 }
 /*EDITADOS*/
-button.dt-button, div.dt-button, a.dt-button, input.dt-button{
-    border-radius: 10px;
-    border: none;
-    background: #434190;
-    color: #fff;
-    transition-duration: 0.6s;
-}
-
-button.dt-button:hover{
-    background-color: red; /* Green */
-    color: white;
-}
 
 div.dataTables_wrapper div.dataTables_filter input{
     border-radius: 10px;
@@ -14810,14 +14798,6 @@ div.dataTables_wrapper div.dataTables_filter input{
     color: #9b1e1e;
 }
 
-.page-item.active .page-link {
-    background-color: #434190 !important;
-    border-color: #434190;
-}
-.page-link{
-    color: #666;
-}
-
 .card-footer{
     border-bottom-left-radius: 10px !important;
     border-bottom-right-radius: 10px !important;
@@ -14886,19 +14866,6 @@ button[type="submit"]{
 }
 .table{
     width: 100% !important;
-}
-
-.page-link{
-    border-radius: 10px;
-    margin-right: 5px;
-}
-
-.page-link:hover{
-    background-color: #434190;
-    color: #fff;
-}
-.page-link:focus{
-    border-color: #434190;
 }
 
 .btn-link{

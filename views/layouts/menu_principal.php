@@ -12,32 +12,29 @@
                         <i class="fa fa-home"></i>Inicio
                     </a>
                 </li>
+                <li>
+                    <a href="pagos">
+                    <i class="fas fa-university"></i>Pagos</a>
+                </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fa fa-users"></i>Tercero
+                        <i class="fas fa-user"></i>Tercero
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'terceros'">
-                                Registro Tercero</a>
+                            <a href="terceros">Registro Tercero</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'detalleTercero'">
-                                Detalle Tercero</a>
+                            <a href="detalleTercero">Detalle Tercero</a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript:void(0)" onclick="location.href = 'pagos'">
-                        <i class="fas fa-shopping-basket"></i>Pagos</a>
-
-                </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fas fa-trophy"></i>Tesoreria
+                        <i class="fas fa-book"></i>Tesoreria
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -67,17 +64,17 @@
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
                             <a href="javascript:void(0)" onclick="location.href = 'rpt-egresos'">
-                                <i class="far fa-circle fa-xs"></i>Egresos</a>
+                                Egresos</a>
                         </li>
                         <li>
                             <a href="javascript:void(0)" onclick="location.href = 'ingresos'">
-                                <i class="far fa-circle fa-xs"></i>Ingresos</a>
+                                Ingresos</a>
                         </li>
                     </ul>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="zmdi zmdi-collection-text"></i>Archivos
+                        <i class="fas fa-paperclip"></i>Archivos
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -85,11 +82,11 @@
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
                             <a href="javascript:void(0)" onclick="location.href = 'archivos'">
-                                <i class="far fa-circle fa-xs"></i>Gestion</a>
+                                Gestion</a>
                         </li>
                         <li>
                             <a href="javascript:void(0)" onclick="location.href = 'categoriaarchivos'">
-                                <i class="far fa-circle fa-xs"></i>Categorias</a>
+                                Categorias</a>
                         </li>
                     </ul>
                 </li>

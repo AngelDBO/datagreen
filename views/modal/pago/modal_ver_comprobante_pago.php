@@ -11,6 +11,9 @@
             <div class="modal-body">
                 <div id="imagenData"></div>
             </div>
+            <div class="modal-footer">
+                <h6 id="valorPago" class="text-left"></h6>
+            </div>
         </div>
     </div>
 </div>
