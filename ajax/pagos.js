@@ -214,8 +214,8 @@ function cargarArchivo(id) {
         data: 'id=' + id,
         success: function (response) {
             var data = JSON.parse(response);
-            $('#imagenData').empty().append('<img class="img-fluid" src="' + data.comprobante + '">');
-            document.getElementById("valorPago").innerHTML = `Comprobante de pago por valor de: $${data.monto} pesos`;
+            $('#imagenData').empty().append('<img src="' + data.comprobante + '" width="auto">');
+            //document.getElementById("valorPago").innerHTML = `Comprobante de pago por valor de: $${data.monto} pesos`;
         }
     });
 }

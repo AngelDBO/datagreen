@@ -84,8 +84,14 @@ if (isset($_SESSION['session_datapagos'])) {
 
 <!-- Modal -->
 <?php require_once 'modal/egreso/modal_registrar_egreso.php'?>
+<!-- Modal Anexo-->
+<?php require_once 'modal/egreso/modal_ver_anexo.php'?>
 <!-- Modal Editar-->
 <?php require_once 'modal/egreso/modal_editar_egreso.php'?>
+<!-- Modal Agregar Anexo-->
+<?php require_once 'modal/egreso/modal_agregar_anexo.php'?>
+<!-- Modal Actualizar Anexo-->
+<?php require_once 'modal/egreso/modal_actualizar_anexo.php'?>
 
 <!-- Jquery JS-->
 <?php require_once 'layouts/scripts.php'?>

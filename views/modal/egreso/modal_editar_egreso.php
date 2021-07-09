@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="frmActualizarIngreso" onsubmit="return actualizarEngreso()" method="post" autocomplete="off">
+                <form id="frmActualizarIngreso" onsubmit="return actualizarEgreso()" method="post" autocomplete="off">
                     <input type="hidden" name="egresoUpdateID" id="egresoUpdateID">
                     <div class="form-group">
                         <label for="tercero" class="text-body col-form-label-sm">Tercero</label>
@@ -18,14 +18,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="monto" class="text-body col-form-label-sm">Monto</label>
-                        <input type="text" name="montoU" id="montoU" class="form-control form-control-sm" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="medioPago" class="text-body col-form-label-sm">Medio de pago</label>
-                        <select class="form-control form-control-sm" name="medioPagoEgresoU" id="medioPagoEgresoEdit"
-                            required>
+                        <label for="categoriaEdit" class="text-body col-form-label-sm">Categoria</label>
+                        <select class="form-control form-control-sm" name="categoriaEgresoU"
+                            id="categoria_egresoEdit" required>
                         </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="monto" class="text-body col-form-label-sm">Monto</label>
+                            <input type="text" name="montoU" id="montoU" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="medioPago" class="text-body col-form-label-sm">Medio de pago</label>
+                            <select class="form-control form-control-sm" name="medioPagoEgresoU"
+                                id="medioPagoEgresoEdit" required>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="descripcionIngreso" class="text-body col-form-label-sm">Descripción del
@@ -39,9 +47,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <div id="erroresEgresoEditar"></div>
             </div>
         </div>
     </div>

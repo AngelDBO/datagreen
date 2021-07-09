@@ -3,21 +3,19 @@
         <div class="container-fluid">
             <div class="header-wrap2">
                 <div class="logo d-block d-lg-none">
-                    <a href="#">
-                        <img src="../public/images/icon/logo-white.png" alt="CoolAdmin" />
-                    </a>
+                    <a href="#"><img src="../public/images/icon/logo-white.png" alt="CoolAdmin" /></a>
                 </div>
-
                 <div class="header-button2">
-                    <div class="header-button-item js-item-menu info-user">
+                    <div class="d-flex align-items-center mr-3 text-white">
                         <span
-                            class="font-weight-bold h5 pt-2"><?php echo $_SESSION['session_datapagos']['nombre']?></span>
+                            class="font-weight-bold h5 pt-2"><?php echo $_SESSION['session_datapagos']['nombre']?>
+                        </span>
                     </div>
                     <div class="header-button-item has-noti js-item-menu">
-                        <i class="zmdi zmdi-notifications"></i>
+                        <i class="uil uil-bell"></i>
                         <div class="notifi-dropdown js-dropdown">
                             <div class="notifi__title">
-                                <p>You have 3 Notifications</p>
+                                <p>Tienes 2 notificaciones</p>
                             </div>
                             <div class="notifi__item">
                                 <div class="bg-c1 img-cir img-40">
@@ -52,7 +50,7 @@
                         </div>
                     </div>
                     <div class="header-button-item mr-0 js-sidebar-btn">
-                        <i class="zmdi zmdi-menu"></i>
+                        <i class="uil uil-bars"></i>
                     </div>
                     <div class="setting-menu js-right-sidebar d-none d-lg-block">
                         <div class="container account-dropdown__body">

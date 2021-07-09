@@ -22,12 +22,12 @@ switch ($_REQUEST['opcion']) {
         if ($data) {
             foreach ($data as $value) {
                 $list[] = [
-                    "caja" => "<button class='{$value['color']} text-white' onclick='finalizarAgenda({$value['id']})'><i class='fas fa-thumbtack'></i></button>",
+                    "caja" => "<button class='{$value['color']} text-white' onclick='finalizarAgenda({$value['id']})'><i class='uil uil-map-pin'></i></button>",
                     "actividad" => $value['actividad'],
                     "periodo" => $value['periodo'],
                     "fecha" => $value['fecha'],
                     "estado" => "<span class='h3 badge badge-success'>{$value['estado']}</span>",
-                    "editar" => "<button class='btn btn-sm text-white' style='background: #492ab3' onclick='editarAgenda({$value['id']})' data-toggle='modal' data-target='#modalEditar'><i class='fas fa-edit'></i></button"
+                    "editar" => "<button class='btn btn-sm text-white' style='background: #492ab3' onclick='editarAgenda({$value['id']})' data-toggle='modal' data-target='#modalEditar'><i class='uil uil-edit'></i></button"
                 ];
             }
         }

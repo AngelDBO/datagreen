@@ -9,10 +9,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="frmIngreso" onsubmit="return registrarEgreso()" method="post" autocomplete="off">
+                <form id="frmEgreso" onsubmit="return registrarEgreso()" method="post" autocomplete="off" enctype="multipart/form-data">
+                <input type="hidden" name="nombreTercero" id="nombreTercero">
                     <div class="form-group">
                         <label for="tercero" class="text-body col-form-label-sm">Tercero</label>
-                        <select class="form-control form-control-sm" name="terceroEgreso" id="terceroEgreso" required>
+                        <select class="form-control form-control-sm" name="terceroEgreso" id="terceroEgreso" onchange="obtenerNombreTercero()" required>
                         </select>
                     </div>
                     <div class="form-group">
@@ -34,24 +35,26 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="descripcionIngreso" class="text-body col-form-label-sm">Descripción del
-                                ingreso</label>
+                            <label for="descripcionEgreso" class="text-body col-form-label-sm">Descripción del
+                                egreso</label>
                             <textarea class="form-control form-control-sm" rows="3"
-                                name="descripcionIngreso"></textarea>
+                                name="descripcionEgreso"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="medioPago" class="text-body col-form-label-sm">Anexo</label>
-                            <input type="file" class="form-control" name="anexoEgreso" captureh>
+                            <input type="file" class="form-control form-control-sm" name="anexoEgreso" captureh>
                         </div>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-sm  text-white">
-                            <i class='fas fa-save'></i> Guardar
+                            <i class="uil uil-save"></i> Guardar
                         </button>
+                    </div>
+                    <div class="form-group mt-2">
+                        <div id="erroresEgreso"></div>
                     </div>
                 </form>
             </div>
-            <div id="erroresEgreso"></div>
         </div>
     </div>
 </div>

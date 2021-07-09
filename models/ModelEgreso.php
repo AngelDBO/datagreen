@@ -11,12 +11,11 @@ class Egreso {
     }
 
     public function listarEgresos() {
-        $sql = 'SELECT eg.id, em.empresa, ct.nombre AS categoria, eg.monto, mp.nombre, eg.descripcion, eg.fechaRegistro
+        $sql = 'SELECT eg.id, em.empresa, ct.nombre AS categoria, eg.monto, mp.nombre, eg.descripcion, eg.fechaRegistro, eg.anexo
                 FROM egreso eg
-                INNER JOIN empresa em ON eg.empresa_id = em.id INNER
-                JOIN mediopago mp ON eg.medioPago_id = mp.id
+                INNER JOIN empresa em ON eg.empresa_id = em.id 
+                INNER JOIN mediopago mp ON eg.medioPago_id = mp.id
                 INNER JOIN  categoria ct ON eg.categoria_id = ct.id';
-        
         $base = $this->conexion->prepare($sql);
         $base->execute();
         return $base->fetchAll(PDO::FETCH_ASSOC);
@@ -44,8 +43,8 @@ class Egreso {
     }
 
     public function registrarEgreso($datos) {
-        $sql = 'INSERT INTO egreso (monto, descripcion, empresa_id, usuario_id, categoria_id, medioPago_id)
-        VALUES(:monto, :descripcion, :empresa_id, :usuario_id, :categoria_id, :medioPago_id);';
+        $sql = 'INSERT INTO egreso (monto, descripcion, empresa_id, usuario_id, categoria_id, medioPago_id, anexo)
+        VALUES(:monto, :descripcion, :empresa_id, :usuario_id, :categoria_id, :medioPago_id, :anexo);';
         $base = $this->conexion->prepare($sql);
         $base->bindParam(":monto", $datos['monto'], PDO::PARAM_INT);
         $base->bindParam(":descripcion", $datos['descripcion'], PDO::PARAM_STR);
@@ -53,6 +52,7 @@ class Egreso {
         $base->bindParam(":usuario_id", $datos['usuarioId'], PDO::PARAM_INT);
         $base->bindParam(":medioPago_id", $datos['medioPagoId'], PDO::PARAM_INT);
         $base->bindParam(":categoria_id", $datos['categoriaId'], PDO::PARAM_INT);
+        $base->bindParam(":anexo", $datos['anexo'], PDO::PARAM_STR);
         if ($base->execute()) {
             return true;
         }
@@ -75,6 +75,35 @@ class Egreso {
         $base->bindParam(":empresa_id", $datos['terceroID'], PDO::PARAM_INT);
         $base->bindParam(":medioPago_id", $datos['medioPagoID'], PDO::PARAM_INT);
         $base->bindParam(":ID", $datos['registroID'], PDO::PARAM_INT);
+        if($base->execute()){
+            return true;
+        }
+    }
+
+    public function cargarAnexo($id){
+        $sql = 'SELECT id, anexo from egreso WHERE id = :ID';
+        $base = $this->conexion->prepare($sql);
+        $base->bindParam(":ID", $id, PDO::PARAM_INT);
+        if ($base->execute()) {
+            return $base->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+
+    public function eliminarAnexo($datos){
+        $sql = 'UPDATE egreso SET anexo = :anexo WHERE id = :ID';
+        $base = $this->conexion->prepare($sql);
+        $base->bindParam(":ID", $datos['id'], PDO::PARAM_INT);
+        $base->bindParam(":anexo", $datos['anexo'], PDO::PARAM_STR);
+        if($base->execute()){
+            return true;
+        }
+    }
+
+    public function actualizarAnexo($datos){
+        $sql = 'UPDATE egreso SET anexo = :anexo WHERE id = :ID';
+        $base = $this->conexion->prepare($sql);
+        $base->bindParam(":anexo", $datos['anexo'], PDO::PARAM_STR);
+        $base->bindParam(":ID", $datos['idRegistro'], PDO::PARAM_INT);
         if($base->execute()){
             return true;
         }

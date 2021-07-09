@@ -102,9 +102,10 @@ if (isset($_SESSION['session_datapagos'])) {
                                     <div
                                         class="card-header pt-2 pb-2 d-flex justify-content-between align-items-center">
                                         <h4 class="card-title text-white">Agenda</h4>
-                                        <button class="btn btn-sm btn-light float-right text-body" data-toggle="modal"
+                                        <button class="btn btn-sm btn-warning float-right" data-toggle="modal"
                                             data-target="#modalActividad">
-                                            <i class="fa fa-plus-circle"></i> Nuevo </button>
+                                            <i class="uil uil-plus-circle"></i> Nuevo
+                                        </button>
                                     </div>
 
                                     <div class="card-body">
@@ -117,7 +118,7 @@ if (isset($_SESSION['session_datapagos'])) {
                                                     <th width="10%">Periodo</th>
                                                     <th width="10%" class="text-center">Fechas</th>
                                                     <th width="10%" class="text-center">Estado</th>
-                                                    <th width="5%"><i class="far fa-edit"></i></th>
+                                                    <th width="5%"><i class="uil uil-edit"></i></th>
                                                 </tr>
                                             </thead>
                                         </table>

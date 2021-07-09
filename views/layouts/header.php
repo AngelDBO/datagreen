@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../public/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../public/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../public/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!-- Vendor CSS-->
     <link rel="stylesheet" href=".././public/vendor/css-hamburgers/hamburgers.min.css">
     <link rel="stylesheet" type="text/css" href="../public/css/daterangepicker.css" />

@@ -9,10 +9,20 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div>
+                   <!--<h6 id="valorPago" class="text-left"></h6>-->
+                </div>
                 <div id="imagenData"></div>
             </div>
             <div class="modal-footer">
-                <h6 id="valorPago" class="text-left"></h6>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-upload btn-sm">
+                        <input type="button" name="options" id="option2"> Cambiar
+                    </label>
+                    <label class="btn btn-delete btn-sm ml-2">
+                        <input type="button" name="options" id="option3"> Remover
+                    </label>
+                </div>
             </div>
         </div>
     </div>

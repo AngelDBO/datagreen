@@ -29,7 +29,8 @@
 <!-- DATE-RANGE-PICKER JS       -->
 <script type="text/javascript" src="../public/js/daterangepicker.min.js"></script>
 
-
+<!-- JQUERY VALIDATOR JS       -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
 <!-- MAIN JS-->
 <script src="../public/js/main.js"></script>

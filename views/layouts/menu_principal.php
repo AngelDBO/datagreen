@@ -9,16 +9,16 @@
             <ul class="list-unstyled navbar__list">
                 <li class="active has-sub">
                     <a class="js-arrow" href="javascript:void(0)">
-                        <i class="fa fa-home"></i>Inicio
+                        <i class="uil uil-estate"></i>Inicio
                     </a>
                 </li>
                 <li>
                     <a href="pagos">
-                    <i class="fas fa-university"></i>Pagos</a>
+                        <i class="uil uil-bill"></i>Pagos</a>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fas fa-user"></i>Tercero
+                        <i class="uil uil-users-alt"></i>Tercero
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -34,7 +34,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fas fa-book"></i>Tesoreria
+                        <i class="uil uil-coins"></i>Tesoreria
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -56,7 +56,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fas fa-print"></i>Reportes
+                        <i class="uil uil-comparison"></i>Reportes
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -74,7 +74,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="fas fa-paperclip"></i>Archivos
+                        <i class="uil uil-file-network"></i>Archivos
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -92,7 +92,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="fas fa-cog"></i>Control
+                        <i class="uil uil-setting"></i>Control
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>

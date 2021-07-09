@@ -2150,7 +2150,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #434190;
+    background: #3b2479;
     padding: 0 35px;
 }
 
@@ -2356,7 +2356,7 @@ section {
 
 .header-desktop2 {
     height: 75px;
-    background: #434190;
+    background: #3b2479;
     position: fixed;
     z-index: 1001;
     top: 0;
@@ -14710,7 +14710,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 
 .card-header{
-    background: #434190;
+    background: #3b2479;
     border-top-left-radius: 10px !important; 
     border-top-right-radius: 10px !important;
 }
@@ -14773,7 +14773,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 
 .btn-modal{
-    background: #434190;
+    background: #3b2479;
     color: #fff;
     border: none;
 }
@@ -14807,7 +14807,7 @@ div.dataTables_wrapper div.dataTables_filter input{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid #6b7280; 
+    border: 1px solid #d1d5db; 
 }
 
 .form-control:focus {
@@ -14816,7 +14816,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 
 .modal-header{
-    background: #434190;
+    background: #3b2479;
     letter-spacing: 2px;
     font-weight: 400;
     border-top-left-radius: 5px;
@@ -14878,4 +14878,8 @@ button[type="submit"]{
 
 .btn-link:hover{
     color: #434190;
+}
+
+.uil{
+    font-size: 18px;
 }
