@@ -81,7 +81,8 @@ class Egreso {
     }
 
     public function cargarAnexo($id){
-        $sql = 'SELECT id, anexo from egreso WHERE id = :ID';
+        $sql = 'SELECT eg.id, eg.anexo, em.empresa from egreso eg INNER JOIN empresa em on eg.empresa_id = em.id 
+        WHERE eg.id = :ID';
         $base = $this->conexion->prepare($sql);
         $base->bindParam(":ID", $id, PDO::PARAM_INT);
         if ($base->execute()) {

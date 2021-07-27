@@ -3,6 +3,7 @@ session_start();
 $id_usuario = $_SESSION['session_datapagos']['id'];
 require_once '../models/ModelEgreso.php';
 require_once '../config/helpers/validate.php';
+require_once '../config/helpers/files/obtenerExtension.php';
 $objEgreso = new Egreso();
 
 switch ($_REQUEST['opcion']) {
@@ -27,7 +28,7 @@ switch ($_REQUEST['opcion']) {
                         :
                         "<td>
                             <button type='button' class='btn text-white btn-printer btn-sm'><i class='uil uil-print'></i></button>
-                            <button type='button' class='btn text-white btn-upload btn-sm' data-toggle='modal' data-target='#modalAgregarAnexo' onclick='agregarAnexo({$value['id']})'><i class='uil uil-image-plus'></i></button>
+                            <button type='button' class='btn text-white btn-upload btn-sm' data-toggle='modal' data-target='#modalAgregarAnexo' onclick='cargarIdAnexo({$value['id']})'><i class='uil uil-image-plus'></i></button>
                             <button type='button' class='btn text-white btn-edit btn-sm' data-toggle='modal' data-target='#editarEgreso' onclick=editarEgreso({$value['id']})><i class='uil uil-edit'></i></button>
                             <button type='button' class='btn text-white btn-delete btn-sm' onclick=eliminarEgreso({$value['id']})><i class='uil uil-trash-alt'></i></button>
                         </td>"
@@ -69,9 +70,9 @@ switch ($_REQUEST['opcion']) {
         $medioPago = isset($_POST['medioPagoEgreso']) ? $_POST['medioPagoEgreso'] : null;
         $categoria = isset($_POST['categoria_egreso']) ? $_POST['categoria_egreso'] : null;
         $descripcion = isset($_POST['descripcionEgreso']) ? rip_tags($_POST['descripcionEgreso']) : null;
-        $formatos_permitidos = ['pdf', 'jpg', 'png', 'jpeg'];
+        $formatos_permitidos = ['pdf', 'jpg', 'png', 'jpeg', 'PNG'];
         $response = '';
-
+        
         if (!validarEntero($terceroID) && !is_numeric($terceroID)) {
             $errores[] = 'El campo <strong>Tercero</strong> es incorrecto.';
         }
@@ -100,9 +101,9 @@ switch ($_REQUEST['opcion']) {
         }
 
         if($_FILES['anexoEgreso']['size'] > 0 && $_FILES['anexoEgreso']['error'] == UPLOAD_ERR_OK){
-            $extension = pathinfo($_FILES['anexoEgreso']['name'], PATHINFO_EXTENSION);
+            $extension = obtenerExtensionArchivo($_FILES['anexoEgreso']['name']);
             if (in_array($extension, $formatos_permitidos)) {
-                $nombreArchivo = uniqid() . '.' . $extension;
+                $nombreArchivo = nombreArchivo($extension);
                 $carpetaTercero = '../archivos/egresos/' . str_replace(' ', '_', $nombreTercero);
                 if (!file_exists($carpetaTercero)) {
                     mkdir($carpetaTercero, 0777, true);
@@ -126,18 +127,18 @@ switch ($_REQUEST['opcion']) {
                 }
             }else{
                 $response = "Formato no admitido";
+                echo $extension;
             }
         }else{      
-            $datos = [
+            $datos2 = [
                 'monto' => $monto,
                 'descripcion' => $descripcion,
                 'terceroiId' => $terceroID,
                 'usuarioId' => $id_usuario,
                 'categoriaId' => $categoria,
-                'medioPagoId' => $medioPago,
-                'anexo' => $rutaFinal
+                'medioPagoId' => $medioPago
             ];
-            if ($objEgreso->registrarEgreso($datos)) {
+            if ($objEgreso->registrarEgreso($datos2)) {
                 $response = "Egreso registrado con exito";
             }
         }
@@ -200,11 +201,6 @@ switch ($_REQUEST['opcion']) {
        echo json_encode($data);
     break;
 
-    case 'actualizarAnexo':
-        $dataAnexo = $objEgreso->cargarAnexo($_POST['idAnexo']);
-        print_r($dataAnexo);
-    break;
-
     case 'cambiarAnexo':
         $idRegistro = $_POST['codigoAnexo'];
         $dataAnexo = $objEgreso->cargarAnexo($idRegistro);
@@ -236,6 +232,40 @@ switch ($_REQUEST['opcion']) {
         echo $response;
     break;
 
+    case 'actualizarAnexo':
+        $idRegistro = $_POST['codigoAnexoEgreso'];
+        $dataAnexo = $objEgreso->cargarAnexo($idRegistro);
+        $ruta = explode(' ', $dataAnexo['empresa']);
+        $rutaNueva = implode('_', $ruta);
+        $formatos_permitidos = ['pdf', 'jpg', 'png', 'jpeg', 'PNG'];
+        if($_FILES['anexo']['size'] > 0 && $_FILES['anexo']['error'] == UPLOAD_ERR_OK){
+            $extension = pathinfo($_FILES['anexo']['name'], PATHINFO_EXTENSION);
+            if(in_array($extension, $formatos_permitidos)){
+                $nombreArchivo = uniqid() . '.' . $extension;
+                $path = $rutaNueva."/".$nombreArchivo;
+                $carpetaTercero = '../archivos/egresos/' . $rutaNueva;
+
+                if (!file_exists($carpetaTercero)) {
+                    mkdir($carpetaTercero, 0777, true);   
+                }
+                $dir = $carpetaTercero.'/'. $nombreArchivo;
+
+                if (move_uploaded_file($_FILES['anexo']['tmp_name'], $dir)){
+                    $datos = [
+                        'idRegistro' => $idRegistro,
+                        'anexo' => $dir
+                    ];
+                    if ($objEgreso->actualizarAnexo($datos)){
+                        $response = "Anexo modificado con exito";
+                    }
+                }
+            }else {
+                $response = "Formato invalido";
+            }
+        }
+        echo $response;
+    break;
+
     case 'eliminarAnexo':
         $dataAnexo = $objEgreso->cargarAnexo($_POST['idAnexo']);
         $rutaArchivo = $dataAnexo['anexo'];
@@ -253,6 +283,19 @@ switch ($_REQUEST['opcion']) {
     break;
 
     case 'eliminarEgreso':
-        echo $objEgreso->eliminarEgreso($_POST['id']);
-        break;
+        $data = $objEgreso->cargarAnexo($_POST['id']);
+        if(!empty($data['anexo'])){
+            if(unlink($data['anexo'])){
+                echo $data = $objEgreso->eliminarEgreso($_POST['id']);
+                echo "anexo y egreso eliminado con exito";
+            }
+        }else{
+            echo $data = $objEgreso->eliminarEgreso($_POST['id']);
+            echo "egreso eliminado con exito";
+        }
+    break;
+
+    default:
+        return http_response_code(404);
+    break;
 }

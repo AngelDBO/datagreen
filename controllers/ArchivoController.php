@@ -17,18 +17,18 @@ if(isset($_SESSION['session_datapagos'])){
                         "nombre" => $value['nombre'],
                         "tipo" => '.' . $value['tipo'],
                         "url" => "<button type='button' class='btn  text-white btn-ver btn-sm' data-toggle='modal' data-target='#modalVizualizar' 
-                                    onclick=cargarArchivo({$value['id']})><i class='fas fa-eye'></i>
+                                    onclick=cargarArchivo({$value['id']})><i class='uil uil-eye'></i>
                                 </button>",
                         "fechaRegistro" => $value['fechaRegistro'],
                         "OP" => "<td>
                                     <a href='{$value['url']}' class='btn btn-sm text-white btn-download' download>
-                                        <i class='fas fa-download'></i>
+                                    <i class='uil uil-file-download'></i>
                                     <a/>
                                     <button type='button' class='btn btn-sm text-white btn-share ml-1' data-toggle='modal' data-target='#modalCompartir' 
-                                        onclick=compartirArchivo({$value['id']})><i class='fas fa-share-square'></i>
+                                        onclick=compartirArchivo({$value['id']})><i class='uil uil-file-share-alt'></i>
                                     </button>
                                     <button type='button' class='btn btn-sm text-white btn-delete' data-toggle='modal' data-target='#modalCompartir' 
-                                        onclick=eliminarArchivo({$value['id']})><i class='fas fa-trash-alt'></i>
+                                        onclick=eliminarArchivo({$value['id']})><i class='uil uil-trash-alt'></i>
                                     </button>
                                 </td>"
                     ];

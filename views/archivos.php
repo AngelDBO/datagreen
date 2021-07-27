@@ -50,7 +50,7 @@ if (isset($_SESSION['session_datapagos'])) {
                     <div class="row">
                         <div class="col-xl-3">
                             <div class="card">
-                                <div class="card-header pt-2 pb-2 text-center">
+                                <div class="card-header pt-2 pb-2">
                                     <h4 class="card-title text-white align-items-md-stretch">Gestion</h4>
                                 </div>
                                 <div class="card-body">
@@ -63,32 +63,15 @@ if (isset($_SESSION['session_datapagos'])) {
                                     <button type="button"
                                         class="btn btn-block btn-sm btn-link  text-left text-decoration-none"
                                         data-toggle="modal" data-target="#modalFileShareded"
-                                        onclick="obtenerArchivosCompartidos()"><i class="fas fa-share-alt-square"></i>
+                                        onclick="obtenerArchivosCompartidos()"><i class="uil uil-cloud-share"></i>
                                         Compartidos conmigo</button>
-                                    <div class="btn-group" role="group">
-                                        <button id="btnGroupDrop1" type="button"
-                                            class="btn btn-link btn-sm mt-1 dropdown-toggle text-decoration-none"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-filter">
-
-                                            </i> Cateogrias
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            <a class="dropdown-item" href="#"><i class="zmdi zmdi-collection-text"></i>
-                                                Documentos</a>
-                                            <a class="dropdown-item" href="#"><i
-                                                    class="zmdi zmdi-collection-image-o"></i> Imagenes</a>
-                                            <a class="dropdown-item" href="#"><i class="zmdi zmdi-collection-video"></i>
-                                                Videos </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-9">
                             <div class="card">
                                 <div class="card-header pt-2 pb-2">
-                                    <h4 class="card-title text-white text-center">Archivos</h4>
+                                    <h4 class="card-title text-white">Archivos</h4>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-borderless table-hover nowrap dt-responsive"

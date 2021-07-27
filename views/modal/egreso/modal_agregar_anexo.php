@@ -9,15 +9,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input form-control form-control-sm" id="agregarAnexoEgreso" onchange="file()">
-                    <label class="custom-file-label" for="customFile">Seleccione archivo</label>
-                </div>
-                <div id="tempFile" class="mt-4"></div>
-            </div>
-            <div class="modal-footer pt-2 pb-2">
-                <button type="button" class="btn btn-upload btn-sm"><i class="uil uil-cloud-upload"></i> Guardar
-                    anexo</button>
+                <form id="frmAddAnexo" onsubmit="return agregarAnexo()" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="agregarAnexoEgreso" name="codigoAnexoEgreso" readonly>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input form-control form-control-sm" name="anexo">
+                        <label class="custom-file-label" for="customFile">Seleccione archivo</label>
+                    </div>
+                    <div id="tempFile" class="mt-4"></div>
+                    <button type="submit" class="btn btn-upload btn-sm float-right"><i class="uil uil-cloud-upload"></i>
+                        Guardar</button>
+                </form>
             </div>
         </div>
     </div>

@@ -105,13 +105,10 @@ function registrarEgreso() {
         contentType: false,
         processData: false,
         success: (response) => {
-            if (response == 1) {
+            console.log(response);
                 $('#tablaEgresos').DataTable().ajax.reload(null, false);
                 $('#frmEgreso')[0].reset();
-                $('#registroEgreso').modal('hide');   
-            }else if(response !== 1){
-                $('#erroresEgreso').html(response);
-            }
+                $('#registroEgreso').modal('hide');
         }
     });
     return false;
@@ -171,14 +168,16 @@ function eliminarEgreso(id){
                 data: 'id='+ id,
                 url: './../controllers/EgresoController.php?opcion=eliminarEgreso',
                 success: (response) =>{
-                    if(response == 1) {
+                    /*if(response == 1) {
                         $('#tablaEgresos').DataTable().ajax.reload(null, false);
                         Swal.fire(
                             'Borrado!',
                             'Documento eliminado con éxito!.',
                             'success'
                         )
-                    }
+                    }*/
+                    console.log(response);
+                    $('#tablaEgresos').DataTable().ajax.reload(null, false);
                 }
             });
         }
@@ -257,6 +256,7 @@ function fileUpdate() {
 
 function eliminarAnexo() {
     const idAnexo = $("#IDAnexoRemover").val();
+
     Swal.fire({
         title: 'Desea remover este anexo?',
         text: "Esta accion será reversible!",
@@ -275,14 +275,15 @@ function eliminarAnexo() {
                 url: './../controllers/EgresoController.php?opcion=eliminarAnexo',
                 success: (response) =>{
                     console.log(response);
-                    /*if(response == 1) {
-                        $('#tablaEgresos').DataTable().ajax.reload(null, false);
-                        Swal.fire(
-                            'Borrado!',
-                            'Anexo eliminado con éxito!.',
-                            'success'
-                        )
-                    }*/
+                    $('#modalAnexoEgreso').modal('hide');
+                    Swal.fire({
+                        text: response,
+                        icon: 'info',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    })
+                    $('#tablaEgresos').DataTable().ajax.reload(null, false);
                 }
             });
         }
@@ -292,7 +293,6 @@ function eliminarAnexo() {
 function modificarAnexo(){
     const idAnexo = $("#IDAnexoActualizar").val();
     document.getElementById("codigoAnexo").value = idAnexo;
-    console.log($("#codigoAnexo").val());
 }
 
 function actualizarAnexo() {
@@ -321,6 +321,43 @@ function actualizarAnexo() {
                     document.getElementById('anexoTempUpdate').innerHTML = '';
                 }
             })
+        }
+    });
+    return false;
+}
+
+function cargarIdAnexo(id){
+    document.getElementById("agregarAnexoEgreso").value = id;
+}
+
+function agregarAnexo() {
+    const formdata = new FormData(document.getElementById('frmAddAnexo'));
+    $.ajax({
+        url: './../controllers/EgresoController.php?opcion=actualizarAnexo',
+        type: 'post',
+        datatype: 'html',
+        data: formdata,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: (response) => {
+            console.log(response);
+            $('#tablaEgresos').DataTable().ajax.reload(null, false);
+            // Swal.fire({
+            //     text: response,
+            //     icon: 'info',
+            //     showCancelButton: false,
+            //     confirmButtonColor: '#3085d6',
+            //     confirmButtonText: 'Ok'
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         $('#tablaEgresos').DataTable().ajax.reload(null, false);
+            //         $('#exampleModal').modal('hide');
+            //         $('#modalAnexoEgreso').modal('hide');
+            //         document.getElementById('updateAnexo').value = '';
+            //         document.getElementById('anexoTempUpdate').innerHTML = '';
+            //     }
+            // })
         }
     });
     return false;

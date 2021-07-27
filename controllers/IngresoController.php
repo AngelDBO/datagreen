@@ -1,7 +1,8 @@
 <?php
-
+session_start();
 require_once '../models/ModelIngreso.php';
 $objIngreso = new Ingreso();
+$id_usuario = $_SESSION['session_datapagos']['id'];
 
 switch ($_REQUEST['opcion']) {
 
@@ -18,7 +19,9 @@ switch ($_REQUEST['opcion']) {
                     "fechaRegistro" => $value['fechaRegistro'],
                     "acciones" => "<td>
                                         <button type='button' class='btn text-white btn-sm btn-printer' ><i class='fas fa-print'></i></button>
+                                        <button type='button' class='btn text-white btn-sm btn-ver' ><i class='fas fa-print'></i></button>
                                         <button type='button' class='btn text-white btn-sm btn-edit' data-toggle='modal' data-target='#editarEgreso' onclick=editarIngreso({$value['id']})><i class='fas fa-edit'></i></button>
+                                        <button type='button' class='btn text-white btn-sm btn-delete' data-toggle='modal' data-target='#eliminarEgreso' onclick=eliminarIngreso({$value['id']})><i class='fas fa-trash'></i></button>
                                    </td>"
                 ];
             }
@@ -45,14 +48,13 @@ switch ($_REQUEST['opcion']) {
         break;
 
     case 'registrarIngreso':
-        $usuarioID = $_POST['IDusuario'];
         $terceroID = $_POST['terceroIngreso'];
         $monto = $_POST['monto'];
         $medioPago = $_POST['medioPagoIngreso'];
         $descripcion = $_POST['descripcionIngreso'];
 
         $datos = [
-            'usuarioID' => $usuarioID,
+            'usuarioID' => $id_usuario,
             'terceroID' => $terceroID,
             'monto' => $monto,
             'medioPago' => $medioPago,

@@ -10,7 +10,6 @@
             </div>
             <div class="modal-body">
                 <form id="frmIngreso" onsubmit="return registrarIngreso()" method="post" autocomplete="off">
-                    <input type="hidden" name="IDusuario" value="1">
                     <div class="form-group">
                         <label for="tercero" class="text-body col-form-label-sm">Tercero</label>
                         <select class="form-control form-control-sm" name="terceroIngreso" id="terceroIngreso" required>

@@ -63,7 +63,7 @@
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
-                            <a href="javascript:void(0)" onclick="location.href = 'rpt-egresos'">
+                            <a href="javascript:void(0)" onclick="location.href = 'reporte'">
                                 Egresos</a>
                         </li>
                         <li>
