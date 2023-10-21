@@ -2,6 +2,7 @@
 
 require_once '../models/ModelAgenda.php';
 $objAgenda = new Agenda();
+
 switch ($_REQUEST['opcion']) {
     case 'registrarAgenda':
         $datos = [
