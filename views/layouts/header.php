@@ -32,4 +32,4 @@
     <link rel="stylesheet" href="../public/css/theme.css">
 </head>
 
-<body>
+<body  id="photo">

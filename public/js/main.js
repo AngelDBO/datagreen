@@ -156,3 +156,21 @@
 
 })(jQuery);
 
+
+function captura(){
+			let src = document.getElementById('photo'); //capturamos el todo el cntenido del div con id photo
+			html2canvas(src).then( canvas => {
+				canvas.toBlob( blob => {
+					navigator.clipboard.write([
+						new ClipboardItem(
+							Object.defineProperty({}, blob.type, {
+								value: blob,
+								enumerable: true
+							})
+						)
+					]).then(function() {
+						alert("copiado con exito");
+					});
+				});
+			});
+		}
