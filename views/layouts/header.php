@@ -5,8 +5,6 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
     <link rel="icon" type="image/png" href="../public/images/favicon/compartir.png">
 
 
@@ -32,4 +30,4 @@
     <link rel="stylesheet" href="../public/css/theme.css">
 </head>
 
-<body  id="photo">
+<body>

@@ -11,7 +11,7 @@
     for (var i = 0; i < menu.length; i++) {
       $(menu[i]).on('click', function (e) {
         e.preventDefault();
-        $('.js-right-sidebar').removeClass("show-sidebar");        
+        $('.js-right-sidebar').removeClass("show-sidebar");
         if (jQuery.inArray(this, menu) == sub_menu_is_showed) {
           $(this).toggleClass('show-dropdown');
           sub_menu_is_showed = -1;
@@ -41,28 +41,28 @@
   }
 
   var wW = $(window).width();
-    // Right Sidebar
-    var right_sidebar = $('.js-right-sidebar');
-    var sidebar_btn = $('.js-sidebar-btn');
+  // Right Sidebar
+  var right_sidebar = $('.js-right-sidebar');
+  var sidebar_btn = $('.js-sidebar-btn');
 
-    sidebar_btn.on('click', function (e) {
-      e.preventDefault();
-      for (var i = 0; i < menu.length; i++) {
-        menu[i].classList.remove("show-dropdown");
-      }
-      sub_menu_is_showed = -1;
-      right_sidebar.toggleClass("show-sidebar");
-    });
+  sidebar_btn.on('click', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < menu.length; i++) {
+      menu[i].classList.remove("show-dropdown");
+    }
+    sub_menu_is_showed = -1;
+    right_sidebar.toggleClass("show-sidebar");
+  });
 
-    $(".js-right-sidebar, .js-sidebar-btn").click(function (event) {
-      event.stopPropagation();
-    });
+  $(".js-right-sidebar, .js-sidebar-btn").click(function (event) {
+    event.stopPropagation();
+  });
 
-    $("body,html").on("click", function () {
-      right_sidebar.removeClass("show-sidebar");
+  $("body,html").on("click", function () {
+    right_sidebar.removeClass("show-sidebar");
 
-    });
- 
+  });
+
 
   // Sublist Sidebar
   try {
@@ -130,7 +130,7 @@
   "use strict";
 
   try {
-    
+
     $('[data-toggle="tooltip"]').tooltip();
 
   } catch (error) {
@@ -141,36 +141,17 @@
   try {
     var inbox_wrap = $('.js-inbox');
     var message = $('.au-message__item');
-    message.each(function(){
+    message.each(function () {
       var that = $(this);
 
-      that.on('click', function(){
+      that.on('click', function () {
         $(this).parent().parent().parent().toggleClass('show-chat-box');
       });
     });
-    
+
 
   } catch (error) {
     console.log(error);
   }
 
 })(jQuery);
-
-
-function captura(){
-			let src = document.getElementById('photo'); //capturamos el todo el cntenido del div con id photo
-			html2canvas(src).then( canvas => {
-				canvas.toBlob( blob => {
-					navigator.clipboard.write([
-						new ClipboardItem(
-							Object.defineProperty({}, blob.type, {
-								value: blob,
-								enumerable: true
-							})
-						)
-					]).then(function() {
-						alert("copiado con exito");
-					});
-				});
-			});
-		}

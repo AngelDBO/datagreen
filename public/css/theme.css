@@ -292,18 +292,18 @@ section {
     .page-wrapper {
         overflow: auto;
         background: #edf2f7;
-        padding-bottom: 12vh;
+        /* padding-bottom: 12vh; */
     }
 }
 .page-container {
     background: #e5e5e5;
-    padding-left: 300px;
+    padding-left: 250px;
 }
 
 @media (max-width: 991px) {
     .page-container {
         position: relative;
-        top: 88px;
+        top: 25px;
         padding-left: 0;
     }
 }
@@ -325,7 +325,7 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 105px;
     min-height: 100vh;
 }
 
@@ -461,7 +461,7 @@ section {
     color: #fff;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 20px;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -721,7 +721,7 @@ section {
 
 /* ----- Input ----- */
 .au-input {
-    line-height: 43px;
+    line-height: 40px;
     border: 1px solid #e5e5e5;
     font-size: 14px;
     color: #666;
@@ -845,17 +845,17 @@ section {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    background: #4272d7;
+    background: #fff;
     margin-left: -3px;
 }
 
 .au-btn--submit:hover {
-    background: #3868cd;
+    background: #fff;
 }
 
 .au-btn--submit > i {
     font-size: 20px;
-    color: #fff;
+    color: #3e3e3e;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1155,9 +1155,15 @@ section {
 }
 
 .form-control {
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1.5px solid #d1d5db; 
+}
+
+.form-control:focus {
+    border: 2px solid rgb(59 36 121 / 72%);
+    box-shadow: inset 0 1px 1px rgba(73, 42, 179, 0.075), 0 0 8px rgba(73, 42, 179, 0.1);
 }
 
 .card {
@@ -1370,12 +1376,12 @@ section {
 }
 
 .noti__item:hover i {
-    color: #999;
+    color: #fff;
 }
 
 .noti__item i {
     font-size: 30px;
-    color: #a9b3c9;
+    color: #fff;
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -1435,7 +1441,7 @@ section {
 }
 
 .account-item > .content > a {
-    color: #333;
+    color: #fff;
     text-transform: capitalize;
     font-weight: 500;
 }
@@ -1450,7 +1456,7 @@ section {
 }
 
 .account-item > .content > a:hover {
-    color: #666;
+    color: #fff;
 }
 
 .account-dropdown {
@@ -1547,7 +1553,7 @@ section {
 }
 
 .account-dropdown__item a:hover {
-    background: #4272d7;
+    background: #434190;
     color: #fff;
 }
 
@@ -1574,7 +1580,7 @@ section {
 }
 
 .account-dropdown__footer a:hover {
-    background: #4272d7;
+    background: #434190;
     color: #fff;
 }
 
@@ -2139,7 +2145,7 @@ section {
 }
 
 .menu-sidebar2 .logo {
-    height: 75px;
+    height: 60px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -2150,7 +2156,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #3b2479;
+    background: #fff;
     padding: 0 35px;
 }
 
@@ -2355,7 +2361,7 @@ section {
 }
 
 .header-desktop2 {
-    height: 75px;
+    height: 60px;
     background: #3b2479;
     position: fixed;
     z-index: 1001;
@@ -2367,7 +2373,7 @@ section {
 @media (max-width: 991px) {
     .header-desktop2 {
         left: 0;
-        position: relative;
+        /* position: relative; */
     }
 }
 
@@ -14803,18 +14809,6 @@ div.dataTables_wrapper div.dataTables_filter input{
     border-bottom-right-radius: 10px !important;
 }
 
-.form-control{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    border: 1px solid #d1d5db; 
-}
-
-.form-control:focus {
-    border: 2px solid #4f46e5;
-    box-shadow: inset 0 1px 1px rgba(73, 42, 179, 0.075), 0 0 8px rgba(73, 42, 179, 0.1);
-}
-
 .modal-header{
     background: #3b2479;
     letter-spacing: 2px;
@@ -14857,8 +14851,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 
 button[type="submit"]{
-    background: #434190;
-    border-color: #434190;
+    background: #fff;
+    border-color: none;
 }
 .daterangepicker .ranges li.active{
     background: #434190 !important;
