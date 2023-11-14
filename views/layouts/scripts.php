@@ -16,8 +16,6 @@
 <script src="../public/js/vfs_fonts.js"></script>
 <script src="../public/js/buttons.html5.min.js"></script>
 <script src="../public/js/buttons.print.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-
 <!-- CHART JS       -->
 <script src="../public/js/chart.min.js"></script>
 
@@ -32,7 +30,6 @@
 
 <!-- JQUERY VALIDATOR JS       -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
 
 <!-- MAIN JS-->
 <script src="../public/js/main.js"></script>
