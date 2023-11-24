@@ -14865,11 +14865,6 @@ div.dataTables_wrapper div.dataTables_filter input {
     background: #434190 !important;
 }
 
-button[type="submit"] {
-    background: #fff;
-    border-color: none;
-}
-
 .daterangepicker .ranges li.active {
     background: #434190 !important;
 
@@ -14906,4 +14901,9 @@ button[type="submit"] {
 
 .folder{
     border: 1px solid #e5e5e5 !important;
+}
+
+.folder >.card-body{
+    background-color: #FFE9A2;
+    color: #1b1b1b;
 }

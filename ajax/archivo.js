@@ -184,6 +184,18 @@ function verArchivoCompartido(id) {
     });
 }
 
+function openFolder(obj){
+    var name_folder = $(obj).text();
+    $("#folder_name").html(name_folder);
+    $("#secction_folder").hide();
+    $("#secction_folder_open").show();
+}
+
+function backTop(){
+    $("#folder_name").html("");
+    $("#secction_folder").show();
+    $("#secction_folder_open").hide();
+}
 document.addEventListener("DOMContentLoaded", (event) => {
 
 });

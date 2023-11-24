@@ -17,12 +17,12 @@
             <ul class="list-unstyled navbar__list">
                 <li class="active has-sub">
                     <a class="js-arrow" href="javascript:void(0)">
-                        <i class="uil uil-estate"></i>Inicio
+                        <i class="zmdi zmdi-view-dashboard"></i>Inicio
                     </a>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="uil-apps"></i>Administración
+                        <i class="zmdi zmdi-dns"></i>Administración
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -53,7 +53,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="uil uil-coins"></i>Tesoreria
+                        <i class="zmdi zmdi-case"></i>Tesoreria
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -79,7 +79,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="uil-users-alt"></i>CRM
+                        <i class="zmdi zmdi-puzzle-piece"></i>CRM
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -113,7 +113,7 @@
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow">
-                        <i class="uil uil-file-network"></i>Archivos
+                        <i class="zmdi zmdi-folder-person"></i>Archivos
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
@@ -131,12 +131,12 @@
                 </li>
                 <li class="active has-sub">
                     <a class="js-arrow" href="javascript:void(0)">
-                        <i class="uil-book-alt"></i>Reportes
+                        <i class="zmdi zmdi-assignment"></i>Reportes
                     </a>
                 </li>
                 <li class="has-sub">
                     <a class="js-arrow" href="#">
-                        <i class="uil uil-setting"></i>Control
+                        <i class="zmdi zmdi-settings"></i>Control
                         <span class="arrow">
                             <i class="fas fa-angle-down"></i>
                         </span>
