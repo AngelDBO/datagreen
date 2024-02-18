@@ -19,7 +19,7 @@ class Archivo {
     }
 
     public function listarArchivos($codigoUsuario) {
-        $sql = 'SELECT AR.id, CA.nombre as categoria, AR.nombre, AR.tipo, AR.url, AR.fechaRegistro
+        $sql = 'SELECT AR.id, CA.nombre as categoria, AR.nombre, AR.tipo, AR.url, AR.fechaRegistro, AR.ultima_visita
         FROM archivo AR
         INNER JOIN categoria_archivo CA ON AR.id_categoria = CA.id
         WHERE AR.id_usuario = :codigo';

@@ -1381,7 +1381,7 @@ section {
 }
 
 .noti__item i {
-    font-size: 30px;
+    font-size: 25px;
     color: #fff;
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -1422,8 +1422,8 @@ section {
 }
 
 .account-item .image {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     float: left;
     overflow: hidden;
     -webkit-border-radius: 3px;
@@ -1437,7 +1437,7 @@ section {
 
 .account-item>.content {
     margin-left: 45px;
-    padding: 9px 0;
+    padding: 3px 0;
     padding-left: 12px;
 }
 
@@ -2276,14 +2276,6 @@ section {
     color: #555;
 }
 
-.navbar-sidebar2 .navbar__list li:hover>a {
-    color: #434190;
-    border-radius: 5px;
-    margin-left: 4px;
-    margin-right: 5px;
-}
-
-
 .navbar-sidebar2 .navbar__list li a {
     font-size: 15px;
     color: #566573;
@@ -2376,7 +2368,7 @@ section {
 }
 
 .header-desktop2 {
-    height: 60px;
+    height: 48px;
     background: #3b2479;
     position: fixed;
     z-index: 1001;
@@ -14739,7 +14731,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 .card-header {
-    background: #3b2479;
+    background-color: transparent;
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
 }
@@ -14861,10 +14853,6 @@ div.dataTables_wrapper div.dataTables_filter input {
     background: #F8F9F9;
 }
 
-.card-header {
-    background: #434190 !important;
-}
-
 .daterangepicker .ranges li.active {
     background: #434190 !important;
 
@@ -14906,4 +14894,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 .folder >.card-body{
     background-color: #FFE9A2;
     color: #1b1b1b;
+}
+
+.dropdown-toggle-custom::after {
+    display: none;
 }

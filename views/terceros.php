@@ -41,9 +41,6 @@ if (isset($_SESSION['session_datapagos'])) {
                                     data-target="#exampleModal">
                                     <i class="zmdi zmdi-plus-circle"></i><span> Nuevo</span>
                                 </button>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#e">
-                                    Launch demo modal
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -98,36 +95,6 @@ if (isset($_SESSION['session_datapagos'])) {
 <!-- Jquery JS-->
 <?php require_once 'layouts/scripts.php'?>
 
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="e" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Informacion del tercero</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        
-                    </div>
-                    <div class="col-sm-6">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- FUNCIONES JS-->
 <script src="../ajax/terceros.js"></script>
 </body>

@@ -31,6 +31,8 @@
 <!-- JQUERY VALIDATOR JS       -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
+<script src="../public/js/accounting.min.js"></script>
+
 <!-- MAIN JS-->
 <script src="../public/js/main.js"></script>
 </body>

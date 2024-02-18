@@ -13,24 +13,27 @@ if(isset($_SESSION['session_datapagos'])){
             if ($data) {
                 foreach ($data as $value) {
                     $list[] = [
-                        "categoria" => $value['categoria'],
                         "nombre" => $value['nombre'],
+                        "peso" => sprintf("%4.2f MB", filesize($value['url']) / 1048576),
+                        "categoria" => $value['categoria'],
                         "tipo" => '.' . $value['tipo'],
-                        "url" => "<button type='button' class='btn  text-white btn-ver btn-sm' data-toggle='modal' data-target='#modalVizualizar' 
-                                    onclick=cargarArchivo({$value['id']})><i class='zmdi zmdi-eye'></i>
+                        "url" => "<button type='button' class='btn  text-white btn-ver btn-sm'  
+                                    ><i class='zmdi zmdi-eye'></i>
                                 </button>",
+                        "ultima_visita" => $value['ultima_visita'],
                         "fechaRegistro" => $value['fechaRegistro'],
-                        "OP" => "<td>
-                                    <a href='{$value['url']}' class='btn btn-sm text-white btn-download' download>
-                                    <i class='zmdi zmdi-download'></i>
-                                    <a/>
-                                    <button type='button' class='btn btn-sm text-white btn-share ml-1' data-toggle='modal' data-target='#modalCompartir' 
-                                        onclick=compartirArchivo({$value['id']})><i class='zmdi zmdi-share'></i>
-                                    </button>
-                                    <button type='button' class='btn btn-sm text-white btn-delete' data-toggle='modal' data-target='#modalCompartir' 
-                                        onclick=eliminarArchivo({$value['id']})><i class='zmdi zmdi-delete'></i>
-                                    </button>
-                                </td>"
+                        "OP" => "
+                        <div class='dropdown'>
+                            <button class='btn btn-light dropdown-toggle dropdown-toggle-custom' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                            <i class='zmdi zmdi-more-vert'></i>
+                            </button>
+                            <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                <a class='dropdown-item' href='javascript:void(0)' data-toggle='modal' data-target='#modalVizualizar' onclick=cargarArchivo({$value["id"]})>Visualizar</a>
+                                <a class='dropdown-item' href='{$value['url']}' download>Descargar</a>
+                                <a class='dropdown-item' href='javascript:void(0)' data-toggle='modal' data-target='#modalCompartir' onclick=compartirArchivo({$value['id']})>Compartir</a>
+                                <a class='dropdown-item' href='javascript:void(0)'>Eliminar</a>
+                            </div>
+                        </div>"
                     ];
                 }
             }

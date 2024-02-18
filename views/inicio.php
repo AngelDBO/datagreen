@@ -24,7 +24,7 @@ if (isset($_SESSION['session_datapagos'])) {
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header pt-2 pb-2">
-                                        <h4 class="card-title text-white">Listado de terceros</h4>
+                                        <h4 class="card-title">Listado de terceros</h4>
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-borderless table-hover nowrap dt-responsive"

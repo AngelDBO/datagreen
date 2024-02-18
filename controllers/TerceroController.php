@@ -305,7 +305,7 @@ switch ($_REQUEST['opcion']) {
             foreach ($data as $value) {
                 $list[] = array(
                     "empresa" => $value['empresa'],
-                    "web" => "<a class='btn btn-sm btn-ver text-white' href='{$value['web']}' target='_blank'><i class='uil uil-globe'></i></a>",
+                    "web" => "<a class='btn btn-sm btn-ver text-white' href='{$value['web']}' target='_blank'><i class='zmdi zmdi-globe-alt'></i></a>",
                     "representante" => $value['representante'],
                     "correo" => $value['correo'],
                     "estado" => ($value['estado'] == 'Activo' ? "<h4><span class='badge badge-pill badge-activo'>Activo</span></h4>" : "<h4><span class='badge badge-inactivo badge-pill'>Inactivo</span></h4>"),

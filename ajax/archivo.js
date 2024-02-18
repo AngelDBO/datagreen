@@ -93,8 +93,9 @@ function listarArchivos() {
         iDisplayLength: 10,
         aoColumns: [
             { mData: "nombre" },
+            { mData: "peso" },
             { mData: "categoria" },
-            { mData: "url" },
+            { mData: "ultima_visita" },
             { mData: "fechaRegistro" },
             { mData: "OP" },
         ],

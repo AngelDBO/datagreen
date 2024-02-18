@@ -11,7 +11,7 @@
                 <img src="../public/images/favicon/compartir.png" alt="John Doe">
             </div>
             <h4 class="name">john doe</h4>
-            <a href="#">Sign out</a>
+            <a href="#">Salir</a>
         </div>
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
