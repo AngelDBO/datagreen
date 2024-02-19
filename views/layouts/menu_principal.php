@@ -38,10 +38,10 @@
                             <a href="detalleTercero">Sedes</a>
                         </li>
                         <li>
-                            <a href="detalleTercero">Articulos</a>
+                            <a href="articulo">Artículo</a>
                         </li>
                         <li>
-                            <a href="detalleTercero">Categorias articulo</a>
+                            <a href="articulos-categorias">Artículos categorías</a>
                         </li>
                         <li>
                             <a href="terceros">Clientes</a>
