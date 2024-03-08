@@ -23,22 +23,20 @@ if (isset($_SESSION['session_datapagos'])) {
                 <div class="section__content section__content--p30">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_categoria">Nueva categoría</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Categorías artículos</h4>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <h3 class="text-muted">Categorías Artículos</h3>
+                                            </div>
+                                            <div class="col-md-2 float-right">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_categoria"><i class="fas fa-plus"></i> Nueva categoría</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card-body">
-                                        <table class="table table-borderless table-hover nowrap dt-responsive" id="tablaEgresos">
+                                        <table class="table table-borderless table-hover nowrap dt-responsive" id="tablaCategorias">
                                             <thead class="text-thead">
                                                 <tr>
                                                     <th>Nombre</th>
@@ -48,6 +46,7 @@ if (isset($_SESSION['session_datapagos'])) {
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
+                                            <tbody></tbody>
                                         </table>
                                     </div>
                                 </div>
