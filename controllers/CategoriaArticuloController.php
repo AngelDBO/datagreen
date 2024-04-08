@@ -6,8 +6,8 @@ $Categoria = new CategoriaArticulo();
 $accion = $_POST['accion'];
 switch ($accion) {
     case 'registrar':
-        $nombre_categoria = rip_tags($_POST['nombre_categoria']);
-        $descripcion_categoria = rip_tags($_POST['descripcion_categoria']);
+        $nombre_categoria = rip_tags(strtoupper($_POST['nombre_categoria']));
+        $descripcion_categoria = rip_tags(strtoupper($_POST['descripcion_categoria']));
         $estado_categoria = rip_tags($_POST['estado_categoria']);
         $categoria_id = rip_tags($_POST['categoria_id']);
 

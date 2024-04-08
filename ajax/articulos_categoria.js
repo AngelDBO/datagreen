@@ -5,6 +5,13 @@ let Categoria = {
     categoria_id: "",
 };
 
+const limpiar_campos = () => {
+    Categoria.nombre = "";
+    Categoria.descripcion = "";
+    Categoria.estado = "";
+    Categoria.categoria_id = "";
+};
+
 const guardar_categoria = async () => {
     let fordata = new FormData();
     fordata.append("nombre_categoria", Categoria.nombre);
@@ -21,6 +28,7 @@ const guardar_categoria = async () => {
         .then((data) => {
             if (data.result) {
                 listar_categorias();
+
                 Swal.fire({
                     showCancelButton: false,
                     allowOutsideClick: false,
@@ -31,20 +39,13 @@ const guardar_categoria = async () => {
         });
 };
 
-const limpiar_campos = () => {
-    Categoria.nombre = "";
-    Categoria.descripcion = "";
-    Categoria.estado = "";
-    Categoria.categoria_id = "";
-};
-
 const listar_categorias = async () => {
-    let fordata = new FormData();
-    fordata.append("accion", "listar_categorias");
+    let formdata = new FormData();
+    formdata.append("accion", "listar_categorias");
 
     await fetch("./../controllers/CategoriaArticuloController.php", {
         method: "POST",
-        body: fordata,
+        body: formdata,
     })
         .then((data) => data.json())
         .then((data) => {
@@ -52,18 +53,28 @@ const listar_categorias = async () => {
             $("#tablaCategorias tbody").empty();
 
             if (data.length > 0) {
-               data.forEach(element => {
+                data.forEach(element => {
                     rows += `<tr>
                                 <td>${element.nombre}</td>
                                 <td>${element.descripcion}</td>
-                                <td>${element.estado}</td>
-                                <td>${element.creacion}</td>
+                                <td>${element.estado == "A" 
+                                    ? "<span class='badge badge-success'>Activa</span>"
+                                    : "<span class='badge badge-warning'>Inactiva</span>"}
+                                </td>
                                 <td>
-                                    <button type="button" class="btn btn-light">${element.id}</button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">
+                                        <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                             </tr>`;
-               });
-               $("#tablaCategorias tbody").append(rows);
+                });
+                $("#tablaCategorias tbody").append(rows);
             }
         });
 }
@@ -83,13 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
         Categoria.categoria_id = document.getElementById("categoria_id").value;
 
         if (Categoria.nombre == "" || Categoria.estado == "") {
-            alert("Ensure you input a value in both fields!");
+            alert("Hay campos obligatorios sin diligenciar");
         } else {
             guardar_categoria();
-
+            limpiar_campos();
             loginForm.reset();
+
+            $("#modal_categoria").modal("hide");
         }
     });
-
-
 });

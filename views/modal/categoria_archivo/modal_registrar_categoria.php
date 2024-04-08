@@ -3,9 +3,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header pt-2 pb-2">
-                <h5 class="modal-title text-white" id="exampleModalLongTitle">Registrar categoria</h5>
+                <h5 class="modal-title " id="exampleModalLongTitle">Registrar categoria</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="text-white">&times</span>
+                    <span aria-hidden="true">&times</span>
                 </button>
             </div>
             <div class="modal-body">

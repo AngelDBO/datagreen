@@ -28,25 +28,28 @@ if (isset($_SESSION['session_datapagos'])) {
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <h3 class="text-muted">Categorías Artículos</h3>
-                                            </div>
-                                            <div class="col-md-2 float-right">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_categoria"><i class="fas fa-plus"></i> Nueva categoría</button>
+                                                <h4 class="">Categorías Artículos</h4>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <table class="table table-borderless table-hover nowrap dt-responsive" id="tablaCategorias">
-                                            <thead class="text-thead">
-                                                <tr>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_categoria">
+                                                    <i class="fas fa-plus"></i> Nueva categoría
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <table class="table table-hover table-striped table-sm nowrap dt-responsive" id="tablaCategorias">
+                                            <thead>
+                                                <tr class="text-center">
                                                     <th>Nombre</th>
-                                                    <th>Descripcion</th>
+                                                    <th>Descripción</th>
                                                     <th>Estado</th>
-                                                    <th>Fecha registro</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody class="text-center"></tbody>
                                         </table>
                                     </div>
                                 </div>

@@ -1159,14 +1159,14 @@ section {
 }
 
 .form-control {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
     border: 2px solid #d1d5db;
 }
 
 .form-control:focus {
-    border: 2px solid rgb(59 36 121 / 72%);
+    border: 2px solid rgba(36, 153, 161, 0.72);
     box-shadow: inset 0 1px 1px rgba(73, 42, 179, 0.075), 0 0 8px rgba(73, 42, 179, 0.1);
 }
 
@@ -14820,29 +14820,29 @@ div.dataTables_wrapper div.dataTables_filter input {
     border-bottom-right-radius: 10px !important;
 }
 
-.modal-header {
+/* .modal-header {
     background: #3b2479;
     letter-spacing: 2px;
     font-weight: 400;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-color: #434190;
-}
+} */
 
 .modal-content {
     border-radius: 10px !important;
     border: none;
 }
 
-.close {
+/* .close {
     color: #fff;
     opacity: 1;
-}
+} */
 
-.close:hover {
+/* .close:hover {
     color: #fff;
     opacity: 1;
-}
+} */
 
 .info-user {
     cursor: none;
