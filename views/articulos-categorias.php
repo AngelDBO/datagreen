@@ -23,14 +23,10 @@ if (isset($_SESSION['session_datapagos'])) {
                 <div class="section__content section__content--p30">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xl-12">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <h4 class="">Categorías Artículos</h4>
-                                            </div>
-                                        </div>
+                                        <h4 class="">Categorías Artículos</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">

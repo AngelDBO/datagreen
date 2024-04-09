@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <form method="POST" id="formCategoriaArticulo" autocomplete="off">
                             <input type="text" id="categoria_id">
                             <div class="mb-4">

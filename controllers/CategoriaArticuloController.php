@@ -36,4 +36,8 @@ switch ($accion) {
     case "listar_categorias":
         echo json_encode($Categoria->listarCategorias());
         break;
+
+    case "editar":
+        echo json_encode($Categoria->editarCategoria($_POST['categoria_id']));
+        break;
 }

@@ -39,6 +39,26 @@ const guardar_categoria = async () => {
         });
 };
 
+const editar = async (id) => {
+    let fordata = new FormData();
+    fordata.append("categoria_id", id);
+    fordata.append("accion", "editar");
+
+    await fetch("./../controllers/CategoriaArticuloController.php", {
+        method: "POST",
+        body: fordata,
+    })
+        .then((data) => data.json())
+        .then((data) => {
+            document.getElementById("categoria_id").value = data.id;
+            document.getElementById("nombre_categoria").value = data.nombre;
+            document.getElementById("descripcion_categoria").value = data.descripcion;
+            document.getElementById("estado_categoria").value = data.estado;
+
+            $("#modal_categoria").modal("show");
+        });
+};
+
 const listar_categorias = async () => {
     let formdata = new FormData();
     formdata.append("accion", "listar_categorias");
@@ -62,7 +82,7 @@ const listar_categorias = async () => {
                                     : "<span class='badge badge-warning'>Inactiva</span>"}
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-warning btn-sm">
+                                    <button type="button" class="btn btn-outline-warning btn-sm" onclick="editar(${element.id})">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-info btn-sm">

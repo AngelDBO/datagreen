@@ -48,12 +48,12 @@ class CategoriaArticulo
 
     public function editarCategoria($id)
     {
-        // $sql = 'SELECT * FROM categoria WHERE id = :ID';
-        // $base = $this->conexion->prepare($sql);
-        // $base->bindParam(":ID", $id, PDO::PARAM_INT);
-        // if($base->execute()){
-        //     return $base->fetch(PDO::FETCH_ASSOC);
-        // }
+        $sql = 'SELECT * FROM categoria_articulo WHERE id = :ID';
+        $base = $this->conexion->prepare($sql);
+        $base->bindParam(":ID", $id, PDO::PARAM_INT);
+        if($base->execute()){
+            return $base->fetch(PDO::FETCH_ASSOC);
+        }
     }
 
     public function actualizarCategoriaArticulo($datos)
